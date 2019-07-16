@@ -50,6 +50,7 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
 
     init {
         setWidthScale(IDialog.alertWidthScale)
+        setAnimStyle(IDialog.alertAnimStyle)
     }
 
     override fun onHandleView(dialogView: View): Boolean {

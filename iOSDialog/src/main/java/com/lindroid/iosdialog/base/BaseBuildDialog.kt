@@ -1,4 +1,3 @@
-
 package com.lindroid.iosdialog.base
 
 import android.support.v4.app.DialogFragment
@@ -13,23 +12,22 @@ import android.support.v4.app.FragmentManager
  * @Description
  */
 @Suppress("UNCHECKED_CAST")
-open class BaseBuildDialog<T : BaseBuildDialog<T>> : DialogFragment()  {
+open class BaseBuildDialog<R : BaseBuildDialog<R>> : DialogFragment() {
 
-    protected lateinit var fm: FragmentManager
-
+    lateinit var fm: FragmentManager
 
     companion object {
         @JvmStatic
-        fun <T : BaseBuildDialog<T>> build(fm: FragmentManager): BaseBuildDialog<T> = BaseBuildDialog<T>().apply {
+        inline fun <reified T : BaseBuildDialog<T>> build(fm: FragmentManager)= BaseBuildDialog<T>().apply {
             this.fm = fm
         } as T
 
         @JvmStatic
-        fun <T : BaseBuildDialog<T>> build(activity: FragmentActivity): BaseBuildDialog<T> =
-                build(activity.supportFragmentManager)
+        inline fun <reified T : BaseBuildDialog<T>> build(activity: FragmentActivity):T=  build(activity.supportFragmentManager)
+
 
         @JvmStatic
-        fun <T : BaseBuildDialog<T>> build(fragment: Fragment): BaseBuildDialog<T> = build(fragment.childFragmentManager)
+        inline fun <reified T : BaseBuildDialog<T>> build(fragment: Fragment):T= build(fragment.childFragmentManager)
     }
 
 

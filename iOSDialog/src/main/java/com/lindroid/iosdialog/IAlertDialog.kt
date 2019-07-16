@@ -5,6 +5,8 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
 import android.support.annotation.StringRes
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.view.View
 import com.lindroid.iosdialog.base.BaseIAlertDialog
 import com.lindroid.iosdialog.util.getPxSize
@@ -23,7 +25,8 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
     /**
      * 子类继承需要创建的对话框布局Id
      */
-    override fun dialogViewId()=R.layout.dialog_alert_ios
+    override fun dialogViewId() = R.layout.dialog_alert_ios
+
     private var dismissible = true
     private var posListener: ((DialogInterface) -> Unit)? = null
     private var negListener: ((DialogInterface) -> Unit)? = null
@@ -31,14 +34,12 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
     private var negBtnConfig = IDialog.alertNegBtnConfigs.copy()
     private var buttonHeight = IDialog.alertBtnHeight
 
-//    override var dialogViewId = R.layout.dialog_alert_ios
 
     /**
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */
     override fun onHandleView(contentView: View): Boolean {
         super.onHandleView(contentView)
-        setAnimStyle(R.style.IOSAlertDialogStyle)
         btnPos.apply {
             posBtnConfig.let {
                 text = it.text
@@ -77,6 +78,7 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
             params.height = buttonHeight
             llButton.layoutParams = params
         }
+
         return false
     }
 
@@ -102,7 +104,7 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
      * @param colorId:颜色资源Id
      */
     fun setPosButtonTextColorRes(@ColorRes colorId: Int) =
-            this.apply { setPosButtonTextColor(getResColor(colorId)) }
+        this.apply { setPosButtonTextColor(getResColor(colorId)) }
 
     /**
      * 设置“确认”按钮文字大小
@@ -114,7 +116,7 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
      * @param textSizeId:文字大小Id
      */
     fun setPosButtonTextSizeRes(@DimenRes textSizeId: Int) =
-            this.apply { setPosButtonTextSize(getSpSize(textSizeId)) }
+        this.apply { setPosButtonTextSize(getSpSize(textSizeId)) }
 
     /**
      * “确认”按钮点击事件
@@ -126,10 +128,10 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
      */
     @JvmOverloads
     fun setPosButton(
-            text: String = posBtnConfig.text,
-            @ColorInt textColor: Int = posBtnConfig.textColor,
-            textSize: Float = posBtnConfig.textSize,
-            listener: (DialogInterface) -> Unit
+        text: String = posBtnConfig.text,
+        @ColorInt textColor: Int = posBtnConfig.textColor,
+        textSize: Float = posBtnConfig.textSize,
+        listener: (DialogInterface) -> Unit
     ) = this.apply {
         posBtnConfig.also {
             it.text = text
@@ -161,7 +163,7 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
      * @param colorId:颜色资源Id
      */
     fun setNegButtonTextColorRes(@ColorRes colorId: Int) =
-            this.apply { setNegButtonTextColor(getResColor(colorId)) }
+        this.apply { setNegButtonTextColor(getResColor(colorId)) }
 
     /**
      * 设置“取消”按钮文字大小
@@ -173,7 +175,7 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
      * @param textSizeId:文字大小Id
      */
     fun setNegButtonTextSizeRes(@DimenRes textSizeId: Int) =
-            this.apply { setNegButtonTextSize(getSpSize(textSizeId)) }
+        this.apply { setNegButtonTextSize(getSpSize(textSizeId)) }
 
     /**
      * 设置“取消”按钮点击事件
@@ -184,10 +186,10 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
      * 设置“取消”按钮信息和点击事件
      */
     fun setNegButton(
-            text: String = negBtnConfig.text,
-            @ColorInt textColor: Int = negBtnConfig.textColor,
-            textSize: Float = negBtnConfig.textSize,
-            listener: (DialogInterface) -> Unit
+        text: String = negBtnConfig.text,
+        @ColorInt textColor: Int = negBtnConfig.textColor,
+        textSize: Float = negBtnConfig.textSize,
+        listener: (DialogInterface) -> Unit
     ) = this.apply {
         negBtnConfig.also {
             it.text = text
@@ -222,4 +224,15 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
         super.onDestroy()
     }
 
+    companion object {
+        @JvmStatic
+        fun build(activity: FragmentActivity) = IAlertDialog().apply {
+            this.fm = activity.supportFragmentManager
+        }
+
+        @JvmStatic
+        fun build(fragment: Fragment) = IAlertDialog().apply {
+            this.fm = fragment.childFragmentManager
+        }
+    }
 }

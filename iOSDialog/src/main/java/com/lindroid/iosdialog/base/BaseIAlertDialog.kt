@@ -8,7 +8,7 @@ import com.lindroid.iosdialog.IDialog
  * @function iOS风格提示对话框基类
  * @Description
  */
-abstract class BaseIAlertDialog<T : BaseIOSDialog<T>>:BaseIOSDialog<T>(){
+abstract class BaseIAlertDialog<T : BaseIAlertDialog<T>>:BaseIOSDialog<T>(){
 
     init {
         titleConfig = IDialog.alertTitleConfigs.copy()
@@ -17,6 +17,5 @@ abstract class BaseIAlertDialog<T : BaseIOSDialog<T>>:BaseIOSDialog<T>(){
         paddingTop = IDialog.alertPaddingTop
         paddingSides = IDialog.alertPaddingSides
         paddingBottom = IDialog.alertPaddingBottom
-
     }
 }

@@ -7,8 +7,9 @@
     </style>
 
     <!--底部对话框动画-->
-    <style name="IOSBottomDialogStyle" parent="Animation.Design.BottomSheetDialog">
-
+    <style name="IOSBottomDialogStyle">
+        <item name="android:windowEnterAnimation">@anim/ios_bottom_list_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/ios_bottom_list_slide_out</item>
     </style>
 
     <!--对话框标题样式-->

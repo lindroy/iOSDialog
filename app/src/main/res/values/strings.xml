@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">IOSDialogLib</string>
+    <string name="use_in_kotlin">在Kotlin中使用</string>
+    <string name="use_in_java">在Java中使用</string>
 </resources>
