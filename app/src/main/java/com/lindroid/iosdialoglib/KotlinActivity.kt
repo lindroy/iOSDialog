@@ -134,4 +134,56 @@ class KotlinActivity : AppCompatActivity() {
                 .show()
 
     }
+
+    /**
+     * 自定义内容布局的IAlertDialog
+     */
+    fun showIAlertCustomDialog(view: View) {
+        IAlertDialog
+                .build(this) //创建和配置对话框的入口
+                .setTitle("提示")
+                //                    .setMessage("确定要退出登录吗？")
+                .setContentView(R.layout.custom_view)
+                .setPosButtonText(R.string.confirm)
+                .setNegButtonText(R.string.cancel)
+                .setViewHandler { holder, dialogInterface ->
+                    holder.setOnClickListener(R.id.imageView, View.OnClickListener { Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show() })
+                    null
+                }
+                .show() //显示对话框
+    }
+
+    /**
+     * 自定义内容布局的IAlertListDialog
+     */
+    fun showIAlertListCustomDialog(view: View) {
+        IAlertListDialog
+                .build(this) //创建和配置对话框的入口
+                .setTitle("提示")
+                //                    .setMessage("确定要退出登录吗？")
+                .setContentView(R.layout.custom_view)
+                .setCancelText(R.string.confirm)
+                .setViewHandler { holder, dialogInterface ->
+                    holder.setOnClickListener(R.id.imageView, View.OnClickListener { Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show() })
+                    null
+                }
+                .show() //显示对话框
+    }
+
+    /**
+     * 自定义内容布局的IBottomListDialog
+     */
+    fun showIBottomCustomDialog(view: View) {
+        IBottomListDialog
+                .build(this) //创建和配置对话框的入口
+                .setTitle("提示")
+                //                    .setMessage("确定要退出登录吗？")
+                .setContentView(R.layout.custom_view)
+                .setCancelText(R.string.confirm)
+                .setViewHandler { holder, dialogInterface ->
+                    holder.setOnClickListener(R.id.imageView, View.OnClickListener { Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show() })
+                    null
+                }
+                .show() //显示对话框
+    }
 }

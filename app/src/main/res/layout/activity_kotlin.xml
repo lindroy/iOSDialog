@@ -40,20 +40,23 @@
         android:text="IBottomListDialog(大量选项)" />
 
     <Button
+        android:onClick="showIAlertCustomDialog"
         android:id="@+id/btnIAlertCus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="IAlertDialog(自定义布局)" />
 
     <Button
+        android:onClick="showIAlertListCustomDialog"
         android:id="@+id/btnIAlertListCus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="IAlertListDialog(自定义布局)" />
 
     <Button
+        android:onClick="showIBottomCustomDialog"
         android:id="@+id/btnIBottomCus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="IIBottomDialog(自定义布局)" />
+        android:text="IIBottomListDialog(自定义布局)" />
 </LinearLayout>

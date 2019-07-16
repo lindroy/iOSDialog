@@ -11,11 +11,13 @@ import android.widget.Toast;
 import com.lindroid.iosdialog.IAlertDialog;
 import com.lindroid.iosdialog.IAlertListDialog;
 import com.lindroid.iosdialog.IBottomListDialog;
+import com.lindroid.iosdialog.viewholder.ViewHolder;
 
 import java.util.Arrays;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
 import kotlin.jvm.functions.Function4;
 
 /**
@@ -93,6 +95,7 @@ public class JavaActivity extends AppCompatActivity {
                 })
                 .show();
     }
+
     /**
      * 选项较多的IAlertListDialog
      */
@@ -176,5 +179,80 @@ public class JavaActivity extends AppCompatActivity {
                 })
                 .show();
 
+    }
+
+    /**
+     * 自定义内容布局的IAlertDialog
+     */
+    public void showIAlertCustomDialog(View view) {
+        IAlertDialog
+                .build(this) //创建和配置对话框的入口
+                .setTitle("提示")
+//                    .setMessage("确定要退出登录吗？")
+                .setContentView(R.layout.custom_view)
+                .setPosButtonText(R.string.confirm)
+                .setNegButtonText(R.string.cancel)
+                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(ViewHolder holder, DialogInterface dialogInterface) {
+                        holder.setOnClickListener(R.id.imageView, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        return null;
+                    }
+                })
+                .show(); //显示对话框
+    }
+    /**
+     * 自定义内容布局的IAlertListDialog
+     */
+    public void showIAlertListCustomDialog(View view) {
+        IAlertListDialog
+                .build(this) //创建和配置对话框的入口
+                .setTitle("提示")
+//                    .setMessage("确定要退出登录吗？")
+                .setContentView(R.layout.custom_view)
+                .setCancelText(R.string.confirm)
+                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(ViewHolder holder, DialogInterface dialogInterface) {
+                        holder.setOnClickListener(R.id.imageView, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        return null;
+                    }
+                })
+                .show(); //显示对话框
+    }
+
+    /**
+     * 自定义内容布局的IBottomListDialog
+     */
+    public void showIBottomCustomDialog(View view) {
+        IBottomListDialog
+                .build(this) //创建和配置对话框的入口
+                .setTitle("提示")
+//                    .setMessage("确定要退出登录吗？")
+                .setContentView(R.layout.custom_view)
+                .setCancelText(R.string.confirm)
+                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(ViewHolder holder, DialogInterface dialogInterface) {
+                        holder.setOnClickListener(R.id.imageView, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        return null;
+                    }
+                })
+                .show(); //显示对话框
     }
 }
