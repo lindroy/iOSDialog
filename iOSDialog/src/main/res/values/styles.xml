@@ -1,0 +1,39 @@
+<resources>
+
+    <!--缩放动画 parent="android:Animation"-->
+    <style name="IOSAlertDialogStyle" >
+        <item name="android:windowEnterAnimation">@anim/ios_dialog_center_in</item>
+        <item name="android:windowExitAnimation">@anim/ios_dialog_center_out</item>
+    </style>
+
+    <!--底部对话框动画-->
+    <style name="IOSBottomDialogStyle" parent="Animation.Design.BottomSheetDialog">
+
+    </style>
+
+    <!--对话框标题样式-->
+    <style name="IOSDialogTitleStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@string/title_font_type</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--对话框信息样式-->
+    <style name="IOSDialogMessageStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="IOSDialogButtonStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fontFamily">@string/title_font_type</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+</resources>

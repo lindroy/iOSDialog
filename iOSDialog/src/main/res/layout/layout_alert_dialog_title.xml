@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/llTitleMsg"
+    android:showDividers="middle"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/IOSDialogTitleStyle"
+        tools:text="Prompt" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        style="@style/IOSDialogMessageStyle"
+        tools:text="这是一段很长的说明文字这是一段很长的说明文字这是一段很长的说明文字这是一段很长的说明文字这是一段很长的说明文字" />
+
+
+</LinearLayout>
