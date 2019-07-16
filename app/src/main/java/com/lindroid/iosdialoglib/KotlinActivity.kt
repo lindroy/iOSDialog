@@ -1,10 +1,14 @@
 package com.lindroid.iosdialoglib
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.lindroid.iosdialog.IAlertDialog
+import com.lindroid.iosdialog.IAlertListDialog
+import com.lindroid.iosdialog.IBottomListDialog
+import java.util.*
 
 /**
  * @author Lin
@@ -13,10 +17,12 @@ import com.lindroid.iosdialog.IAlertDialog
  * @Description
  */
 class KotlinActivity : AppCompatActivity() {
+    private lateinit var mContext:Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
+        mContext = this
     }
 
    /* private fun setViewClickListener(vararg viewIds: Int, listener: (view: View) -> Unit) {
@@ -43,6 +49,89 @@ class KotlinActivity : AppCompatActivity() {
                 Toast.makeText(this, "取消", Toast.LENGTH_LONG).show()
             }
             .show()
+    }
+
+    /**
+     * 选项较少的IAlertListDialog
+     */
+    fun showIAlertListDialog(view: View) {
+        IAlertListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的书籍")
+                .addItem("西游记")
+                .addItem("红楼梦")
+                .addItem("水浒传")
+                .addItem("三国演义")
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener {
+                    Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
+                    null
+                }
+                .setItemClickedDismissible(true)
+                .setItemClickListener { pos, s, textView, dialogInterface ->
+                    Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
+                    null
+                }
+                .show()
+    }
+
+    /**
+     * 选项较多的IAlertListDialog
+     */
+    fun showIAlertListMore(view: View) {
+        IAlertListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的城市")
+                .addItems(Arrays.asList(*resources.getStringArray(R.array.cities)))
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener {
+                    Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
+                }
+                .setItemClickedDismissible(true)
+                .setItemClickListener { pos, s, textView, dialogInterface ->
+                    Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
+                }
+                .show()
+    }
+    /**
+     * 选项较少的IBottomListDialog
+     */
+    fun showIBottomListDialog(view: View) {
+        IBottomListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的书籍")
+                .addItem("西游记")
+                .addItem("红楼梦")
+                .addItem("水浒传")
+                .addItem("三国演义")
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener {
+                    Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
+                }
+                .setItemClickedDismissible(true)
+                .setItemClickListener { pos, s, textView, dialogInterface ->
+                    Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
+                }
+                .show()
+    }
+
+    /**
+     * 选项较少的IBottomListMore
+     */
+    fun showIBottomListMore(view: View) {
+        IBottomListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的城市")
+                .addItems(Arrays.asList(*resources.getStringArray(R.array.cities)))
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener {
+                    Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
+                }
+                .setItemClickedDismissible(true)
+                .setItemClickListener { pos, s, textView, dialogInterface ->
+                    Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
+                }
+                .show()
 
     }
 }

@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-             >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <Button
-            android:onClick="showIAlertDialog"
-            android:id="@+id/btnIAlert"
-            android:text="IAlertDialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:id="@+id/btnIAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="showIAlertDialog"
+        android:text="IAlertDialog" />
 
     <Button
-            android:id="@+id/btnIAlertList"
-            android:text="IAlertListDialog(少量选项)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:onClick="showIAlertListDialog"
+        android:id="@+id/btnIAlertList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IAlertListDialog(少量选项)" />
 
     <Button
-            android:id="@+id/btnIAlertListMore"
-            android:text="IAlertListDialog(大量选项)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:onClick="showIAlertListMore"
+        android:id="@+id/btnIAlertListMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IAlertListDialog(大量选项)" />
 
     <Button
-            android:id="@+id/btnIBottom"
-            android:text="IBottomListDialog(少量选项)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:onClick="showIBottomListDialog"
+        android:id="@+id/btnIBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IBottomListDialog(少量选项)" />
 
     <Button
-            android:id="@+id/btnIBottomMore"
-            android:text="IBottomListDialog(大量选项)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:onClick="showIBottomListMore"
+        android:id="@+id/btnIBottomMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IBottomListDialog(大量选项)" />
 
     <Button
-            android:id="@+id/btnIAlertCus"
-            android:text="IAlertDialog(自定义布局)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:id="@+id/btnIAlertCus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IAlertDialog(自定义布局)" />
 
     <Button
-            android:id="@+id/btnIAlertListCus"
-            android:text="IAlertListDialog(自定义布局)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:id="@+id/btnIAlertListCus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IAlertListDialog(自定义布局)" />
 
     <Button
-            android:id="@+id/btnIBottomCus"
-            android:text="IIBottomDialog(自定义布局)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:id="@+id/btnIBottomCus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IIBottomDialog(自定义布局)" />
 </LinearLayout>

@@ -5,10 +5,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.lindroid.iosdialog.IAlertDialog;
+import com.lindroid.iosdialog.IAlertListDialog;
+import com.lindroid.iosdialog.IBottomListDialog;
+
+import java.util.Arrays;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function4;
 
 /**
  * @author Lin
@@ -29,6 +37,7 @@ public class JavaActivity extends AppCompatActivity {
 
     /**
      * IAlertDialog
+     *
      * @param view
      */
     public void showIAlertDialog(View view) {
@@ -40,14 +49,127 @@ public class JavaActivity extends AppCompatActivity {
                 .setPosClickListener(new Function1<DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(DialogInterface dialogInterface) {
-                        Toast.makeText(mContext,"确定",Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, getString(R.string.confirm), Toast.LENGTH_LONG).show();
                         return null;
                     }
                 })
                 .setNegClickListener(new Function1<DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(DialogInterface dialogInterface) {
-                        Toast.makeText(mContext,"取消",Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .show();
+
+    }
+
+    /**
+     * 选项较少的IAlertListDialog
+     */
+    public void showIAlertListDialog(View view) {
+        IAlertListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的书籍")
+                .addItem("西游记")
+                .addItem("红楼梦")
+                .addItem("水浒传")
+                .addItem("三国演义")
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .setItemClickedDismissible(true)
+                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .show();
+    }
+    /**
+     * 选项较多的IAlertListDialog
+     */
+    public void showIAlertListMore(View view) {
+        IAlertListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的城市")
+                .addItems(Arrays.asList(getResources().getStringArray(R.array.cities)))
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .setItemClickedDismissible(true)
+                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .show();
+    }
+
+    /**
+     * 选项较少的IBottomListDialog
+     */
+    public void showIBottomListDialog(View view) {
+        IBottomListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的书籍")
+                .addItem("西游记")
+                .addItem("红楼梦")
+                .addItem("水浒传")
+                .addItem("三国演义")
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .setItemClickedDismissible(true)
+                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .show();
+    }
+    /**
+     * 选项较少的IBottomListMore
+     */
+    public void showIBottomListMore(View view) {
+        IBottomListDialog.build(this)
+                .setTitle("提示")
+                .setMessage("请选择你喜欢的城市")
+                .addItems(Arrays.asList(getResources().getStringArray(R.array.cities)))
+                .setCancelText(R.string.cancel)
+                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                })
+                .setItemClickedDismissible(true)
+                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
+                        Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
                         return null;
                     }
                 })
