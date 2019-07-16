@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lindroid.iosdialog.CustomDialog;
 import com.lindroid.iosdialog.IAlertDialog;
 import com.lindroid.iosdialog.IAlertListDialog;
 import com.lindroid.iosdialog.IBottomListDialog;
@@ -189,7 +190,7 @@ public class JavaActivity extends AppCompatActivity {
                 .build(this) //创建和配置对话框的入口
                 .setTitle("提示")
 //                    .setMessage("确定要退出登录吗？")
-                .setContentView(R.layout.custom_view)
+                .setContentView(R.layout.dialog_content_view)
                 .setPosButtonText(R.string.confirm)
                 .setNegButtonText(R.string.cancel)
                 .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
@@ -206,6 +207,7 @@ public class JavaActivity extends AppCompatActivity {
                 })
                 .show(); //显示对话框
     }
+
     /**
      * 自定义内容布局的IAlertListDialog
      */
@@ -214,7 +216,7 @@ public class JavaActivity extends AppCompatActivity {
                 .build(this) //创建和配置对话框的入口
                 .setTitle("提示")
 //                    .setMessage("确定要退出登录吗？")
-                .setContentView(R.layout.custom_view)
+                .setContentView(R.layout.dialog_content_view)
                 .setCancelText(R.string.confirm)
                 .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
@@ -239,7 +241,7 @@ public class JavaActivity extends AppCompatActivity {
                 .build(this) //创建和配置对话框的入口
                 .setTitle("提示")
 //                    .setMessage("确定要退出登录吗？")
-                .setContentView(R.layout.custom_view)
+                .setContentView(R.layout.dialog_content_view)
                 .setCancelText(R.string.confirm)
                 .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
@@ -254,5 +256,27 @@ public class JavaActivity extends AppCompatActivity {
                     }
                 })
                 .show(); //显示对话框
+    }
+
+    /**
+     * 完全自定义布局对话框
+     */
+    public void showCustomDialog(View view) {
+        CustomDialog.build(this)
+                .setView(R.layout.dialog_custom_view)
+                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                    @Override
+                    public Unit invoke(ViewHolder holder, final DialogInterface dialog) {
+                        holder.setOnClickListener(R.id.tvDismiss, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        return null;
+                    }
+                })
+                .show();
+
     }
 }

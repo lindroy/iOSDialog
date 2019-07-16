@@ -1,5 +1,6 @@
 package com.lindroid.iosdialog
 
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.view.View
@@ -11,7 +12,7 @@ import com.lindroid.iosdialog.base.BaseIOSDialog
  * @function 自定义布局对话框
  * @Description
  */
-internal class CustomDialog : BaseIOSDialog<CustomDialog>() {
+class CustomDialog : BaseIOSDialog<CustomDialog>() {
     /**
      * 子类继承需要创建的对话框布局Id
      */
@@ -35,4 +36,14 @@ internal class CustomDialog : BaseIOSDialog<CustomDialog>() {
                     this.fm = fragment.childFragmentManager
                 }
     }
+
+    /**
+     * 设置自定义的布局
+     */
+    fun setView(dialogView: View) = this.apply { this.dialogView = dialogView }
+
+    /**
+     * 设置自定义的布局Id
+     */
+    fun setView(@LayoutRes layoutId: Int) = this.apply { customViewId = layoutId }
 }

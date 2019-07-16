@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.lindroid.iosdialog.CustomDialog
 import com.lindroid.iosdialog.IAlertDialog
 import com.lindroid.iosdialog.IAlertListDialog
 import com.lindroid.iosdialog.IBottomListDialog
@@ -143,7 +144,7 @@ class KotlinActivity : AppCompatActivity() {
                 .build(this) //创建和配置对话框的入口
                 .setTitle("提示")
                 //                    .setMessage("确定要退出登录吗？")
-                .setContentView(R.layout.custom_view)
+                .setContentView(R.layout.dialog_content_view)
                 .setPosButtonText(R.string.confirm)
                 .setNegButtonText(R.string.cancel)
                 .setViewHandler { holder, dialogInterface ->
@@ -161,7 +162,7 @@ class KotlinActivity : AppCompatActivity() {
                 .build(this) //创建和配置对话框的入口
                 .setTitle("提示")
                 //                    .setMessage("确定要退出登录吗？")
-                .setContentView(R.layout.custom_view)
+                .setContentView(R.layout.dialog_content_view)
                 .setCancelText(R.string.confirm)
                 .setViewHandler { holder, dialogInterface ->
                     holder.setOnClickListener(R.id.imageView, View.OnClickListener { Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show() })
@@ -178,12 +179,25 @@ class KotlinActivity : AppCompatActivity() {
                 .build(this) //创建和配置对话框的入口
                 .setTitle("提示")
                 //                    .setMessage("确定要退出登录吗？")
-                .setContentView(R.layout.custom_view)
+                .setContentView(R.layout.dialog_content_view)
                 .setCancelText(R.string.confirm)
                 .setViewHandler { holder, dialogInterface ->
                     holder.setOnClickListener(R.id.imageView, View.OnClickListener { Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show() })
                     null
                 }
                 .show() //显示对话框
+    }
+
+    /**
+     * 完全自定义布局对话框
+     */
+    fun showCustomDialog(view: View) {
+        CustomDialog.build(this)
+                .setView(R.layout.dialog_custom_view)
+                .setViewHandler { holder, dialog ->
+                    holder.setOnClickListener(R.id.tvDismiss, View.OnClickListener { dialog.dismiss() })
+                }
+                .show()
+
     }
 }

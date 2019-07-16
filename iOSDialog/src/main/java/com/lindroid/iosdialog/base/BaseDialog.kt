@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.annotation.FloatRange
-import android.support.annotation.LayoutRes
 import android.support.annotation.StyleRes
 import android.view.*
 import com.lindroid.iosdialog.IDialog
@@ -27,10 +26,10 @@ abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
     /**
      * 自定义对话框布局Id
      */
-    private var customViewId: Int = 0
+    protected var customViewId: Int = 0
     private var viewHandler: ((ViewHolder, DialogInterface) -> Unit)? = null
     private var dismissListener: (() -> Unit)? = null
-    private var dialogView: View? = null
+    protected var dialogView: View? = null
     private var animStyle = 0
     private var widthScale = 0F
     private var gravity: Int = Gravity.CENTER
@@ -38,12 +37,12 @@ abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
     /**
      * 子类继承需要创建的对话框布局Id
      */
-    abstract fun dialogViewId(): Int
+    protected abstract fun dialogViewId(): Int
 
     /**
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */
-    abstract fun onHandleView(dialogView: View): Boolean
+   protected abstract fun onHandleView(dialogView: View): Boolean
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //去除4.4以下系统中出现的标题栏
@@ -94,16 +93,6 @@ abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
     }
 
     /**
-     * 设置自定义的布局
-     */
-    fun setView(dialogView: View) = this.apply { this.dialogView = dialogView } as T
-
-    /**
-     * 设置自定义的布局Id
-     */
-    fun setView(@LayoutRes layoutId: Int) = this.apply { customViewId = layoutId } as T
-
-    /**
      * 设置DialogFragment的Tag，默认为“BaseDialog”
      */
     fun setTag(tag: String) = this.apply { dialogTag = tag } as T
@@ -129,7 +118,7 @@ abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
      * 处理对话框中的View
      */
     fun setViewHandler(viewHandler: (holder: ViewHolder, dialog: DialogInterface) -> Unit) =
-        this.apply { this.viewHandler = viewHandler } as T
+            this.apply { this.viewHandler = viewHandler } as T
 
     /**
      * 对话框消失监听
