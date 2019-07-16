@@ -21,6 +21,9 @@ class ViewHolder constructor(private val convertView: View) {
     private val views: SparseArray<View> = SparseArray()
     private var mContext: Context = convertView.context
 
+    /**
+     * 通过Id获取某个View的实例
+     */
     fun <T : View> getView(@IdRes viewId: Int): T {
         var view: View? = views.get(viewId)
         if (view == null) {
@@ -29,37 +32,73 @@ class ViewHolder constructor(private val convertView: View) {
         }
         return view as T
     }
-
+    /**
+     * 通过Id获取某个TextView的实例
+     */
     fun getTextView(@IdRes viewId: Int) = getView<TextView>(viewId)
-
+    /**
+     * 通过Id获取某个ImageView的实例
+     */
     fun getImageView(@IdRes viewId: Int) = getView<ImageView>(viewId)
-
+    /**
+     * 通过Id获取某个Button的实例
+     */
     fun getButton(@IdRes viewId: Int) = getView<ImageView>(viewId)
 
+    /**
+     * 设置TextView文字
+     * @param stringId:字符资源ID
+     */
     fun setText(@IdRes viewId: Int, @StringRes stringId: Int) =
             this.apply { getTextView(viewId).setText(stringId) }
-
+    /**
+     * 设置TextView文字
+     */
     fun setText(@IdRes viewId: Int, string: String) = this.apply { getTextView(viewId).text = string }
-
+    /**
+     * 设置TextView文字颜色
+     */
     fun setTextColor(@IdRes viewId: Int, @ColorInt color: Int) =
             this.apply { getTextView(viewId).setTextColor(color) }
-
+    /**
+     * 设置TextView文字颜色
+     * @param colorId:文字资源Id
+     */
     fun setTextColorRes(@IdRes viewId: Int, @ColorRes colorId: Int) =
             this.apply { setTextColor(viewId, ContextCompat.getColor(mContext, colorId)) }
 
+    /**
+     * 设置可见性
+     */
     fun setVisibility(@IdRes viewId: Int, visibility: Int) = this.apply { getView<View>(viewId).visibility = visibility }
 
+
+    /**
+     * 设置是否隐藏
+     */
     fun setGone(@IdRes viewId: Int, isGone: Boolean) = this.apply { getView<View>(viewId).visibility = if (isGone) View.GONE else View.VISIBLE }
 
+    /**
+     * 设置背景
+     * @param backgroundResId : Drawable资源Id
+     */
     fun setBackgroundRes(@IdRes viewId: Int, @DrawableRes backgroundResId: Int) =
             this.apply { getView<View>(viewId).setBackgroundResource(backgroundResId) }
-
+    /**
+     * 设置背景颜色
+     */
     fun setBackgroundColor(@IdRes viewId: Int, @ColorInt color: Int) =
             this.apply { getView<View>(viewId).setBackgroundColor(color) }
-
+    /**
+     * 设置背景颜色
+     * @param colorId : Drawable资源Id
+     */
     fun setBackgroundColorRes(@IdRes viewId: Int, @ColorRes colorId: Int) =
             this.apply { getView<View>(viewId).setBackgroundColor(ContextCompat.getColor(mContext, colorId)) }
 
+    /**
+     * 设置选中
+     */
     fun setChecked(@IdRes viewId: Int, checked: Boolean) = this.apply {
         val view: View = getView(viewId)
         if (view is Checkable) {
@@ -94,6 +133,9 @@ class ViewHolder constructor(private val convertView: View) {
                         }
                     }
 
+    /**
+     * 选择监听
+     */
     fun setOnCheckedChangeListener(@IdRes viewId: Int, listener: CompoundButton.OnCheckedChangeListener) = this.apply {
         val view: View = getView(viewId)
         if (view is CompoundButton) {
