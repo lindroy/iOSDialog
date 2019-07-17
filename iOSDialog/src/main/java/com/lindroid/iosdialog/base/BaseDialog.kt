@@ -7,7 +7,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.annotation.FloatRange
+import android.support.annotation.LayoutRes
 import android.support.annotation.StyleRes
+import android.support.v4.app.DialogFragment
+import android.support.v4.app.FragmentManager
 import android.view.*
 import com.lindroid.iosdialog.IDialog
 import com.lindroid.iosdialog.util.screenWidth
@@ -19,13 +22,14 @@ import com.lindroid.iosdialog.viewholder.ViewHolder
  * @function 对话框基类
  * @Description
  */
-abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
+abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
 
     private var dialogTag = "iOSDialog"
     protected val mContext = IDialog.context
     /**
      * 自定义对话框布局Id
      */
+    @LayoutRes
     protected var customViewId: Int = 0
     private var viewHandler: ((ViewHolder, DialogInterface) -> Unit)? = null
     private var dismissListener: (() -> Unit)? = null
@@ -33,10 +37,12 @@ abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
     private var animStyle = 0
     private var widthScale = 0F
     private var gravity: Int = Gravity.CENTER
+    protected lateinit var fm: FragmentManager
 
     /**
      * 子类继承需要创建的对话框布局Id
      */
+    @LayoutRes
     protected abstract fun dialogViewId(): Int
 
     /**
@@ -48,8 +54,8 @@ abstract class BaseDialog<T : BaseDialog<T>> : BaseBuildDialog<T>() {
         //去除4.4以下系统中出现的标题栏
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return when {
-            dialogViewId() > 0 -> inflater.inflate(dialogViewId(), container, false)
-            customViewId > 0 -> inflater.inflate(customViewId, container, false)
+            dialogViewId() != 0 -> inflater.inflate(dialogViewId(), container, false)
+            customViewId != 0 -> inflater.inflate(customViewId, container, false)
             dialogView != null -> dialogView
             else -> {
                 throw IllegalStateException("请为对话框设置布局!!!")

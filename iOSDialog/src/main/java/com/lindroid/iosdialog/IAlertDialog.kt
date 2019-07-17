@@ -38,8 +38,8 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
     /**
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */
-    override fun onHandleView(contentView: View): Boolean {
-        super.onHandleView(contentView)
+    override fun onHandleView(dialogView: View): Boolean {
+        super.onHandleView(dialogView)
         btnPos.apply {
             posBtnConfig.let {
                 text = it.text
