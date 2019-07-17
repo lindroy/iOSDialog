@@ -73,17 +73,21 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     }
 
     private fun initListView() {
-        lvChoices.apply {
-            divider = ContextCompat.getDrawable(mContext, R.drawable.dialog_ios_divider_vertical)
-            dividerHeight = resources.getDimensionPixelSize(R.dimen.ios_dialog_divider_size)
-            adapter = DialogListAdapter(mContext, DIALOG_BOTTOM_LIST, R.layout.item_dialog_list, items)
-            setOnItemClickListener { parent, view, position, id ->
-                itemClickListener?.invoke(position, items[position].text, view as TextView, dialog)
-                if (itemDismissible) {
-                    dismiss()
+        if (items.isNotEmpty()){
+            lvChoices.apply {
+                visibility = View.GONE
+                divider = ContextCompat.getDrawable(mContext, R.drawable.dialog_ios_divider_vertical)
+                dividerHeight = resources.getDimensionPixelSize(R.dimen.ios_dialog_divider_size)
+                adapter = DialogListAdapter(mContext, DIALOG_BOTTOM_LIST, R.layout.item_dialog_list, items)
+                setOnItemClickListener { parent, view, position, id ->
+                    itemClickListener?.invoke(position, items[position].text, view as TextView, dialog)
+                    if (itemDismissible) {
+                        dismiss()
+                    }
                 }
             }
         }
+
     }
 
     /**

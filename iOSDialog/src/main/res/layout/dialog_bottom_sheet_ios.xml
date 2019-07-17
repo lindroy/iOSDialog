@@ -17,6 +17,7 @@
         <include layout="@layout/layout_dialog_top_panel"/>
 
         <com.lindroid.iosdialog.widget.ElasticListView
+            android:visibility="gone"
             android:id="@+id/lvChoices"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
