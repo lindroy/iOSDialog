@@ -9,7 +9,6 @@ import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.lindroid.iosdialog.adapter.DialogListAdapter
@@ -40,7 +39,7 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
     /**
      * 子类继承需要创建的对话框布局Id
      */
-    override fun dialogViewId()= R.layout.dialog_alert_list_ios
+    override fun dialogViewId() = R.layout.dialog_alert_list_ios
 
     override fun onHandleView(dialogView: View): Boolean {
         super.onHandleView(dialogView)
@@ -67,26 +66,41 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
     }
 
     private fun initListView() {
-        lvChoices.apply {
-            divider = ContextCompat.getDrawable(mContext, R.drawable.dialog_ios_divider_vertical)
-            dividerHeight = resources.getDimensionPixelSize(R.dimen.ios_dialog_divider_size)
-            adapter = DialogListAdapter(mContext, DIALOG_ALERT_LIST, R.layout.item_dialog_list, items)
-            setOnItemClickListener { parent, view, position, id ->
-                itemClickListener?.invoke(position, items[position].text, view as TextView, dialog)
-                if (itemDismissible) {
-                    dismiss()
+        if (items.isNotEmpty()) {
+            lvChoices.apply {
+                visibility = View.VISIBLE
+                divider =
+                    ContextCompat.getDrawable(mContext, R.drawable.dialog_ios_divider_vertical)
+                dividerHeight = resources.getDimensionPixelSize(R.dimen.ios_dialog_divider_size)
+                adapter =
+                    DialogListAdapter(mContext, DIALOG_ALERT_LIST, R.layout.item_dialog_list, items)
+                setOnItemClickListener { parent, view, position, id ->
+                    itemClickListener?.invoke(
+                        position,
+                        items[position].text,
+                        view as TextView,
+                        dialog
+                    )
+                    if (itemDismissible) {
+                        dismiss()
+                    }
                 }
             }
+        } else {
+            lvChoices.visibility = View.GONE
         }
+
     }
 
     /**
      * 添加一个选项
      */
     @JvmOverloads
-    fun addItem(text: String,
-                @ColorInt textColor: Int = alertListItemConfigs.textColor,
-                textSize: Float = alertListItemConfigs.textSize) = this.apply {
+    fun addItem(
+        text: String,
+        @ColorInt textColor: Int = alertListItemConfigs.textColor,
+        textSize: Float = alertListItemConfigs.textSize
+    ) = this.apply {
         items.add(DialogItemBean(text, textColor, textSize))
     }
 
@@ -113,7 +127,8 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
      * 点击取消按钮后是否自动关闭对话框
      * @return 默认为true
      */
-    fun setCanCelClickedDismissible(dismissible: Boolean) = this.apply { this.dismissible = dismissible }
+    fun setCanCelClickedDismissible(dismissible: Boolean) =
+        this.apply { this.dismissible = dismissible }
 
     /**
      * 设置取消按钮文字
@@ -124,18 +139,21 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
      * 设置取消按钮文字Id
      * @param stringId:文字资源Id
      */
-    fun setCancelText(@StringRes stringId: Int) = this.apply { setCancelText(getResString(stringId)) }
+    fun setCancelText(@StringRes stringId: Int) =
+        this.apply { setCancelText(getResString(stringId)) }
 
     /**
      * 设置取消按钮文字颜色
      */
-    fun setCancelTextColor(@ColorInt color: Int) = this.apply { alertListBtnConfigs.textColor = color }
+    fun setCancelTextColor(@ColorInt color: Int) =
+        this.apply { alertListBtnConfigs.textColor = color }
 
     /**
      * 设置取消按钮文字颜色Id
      * @param colorId:颜色资源Id
      */
-    fun setCancelTextColorRes(@ColorRes colorId: Int) = this.apply { setCancelTextColor(getResColor(colorId)) }
+    fun setCancelTextColorRes(@ColorRes colorId: Int) =
+        this.apply { setCancelTextColor(getResColor(colorId)) }
 
     /**
      * 设置取消按钮文字大小，单位为sp
@@ -146,7 +164,8 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
      * 设置取消按钮文字大小
      * @param dimens资源
      */
-    fun setCancelTextSizeRes(@DimenRes textSizeId: Int) = this.apply { setCancelTextSize(getSpSize(textSizeId)) }
+    fun setCancelTextSizeRes(@DimenRes textSizeId: Int) =
+        this.apply { setCancelTextSize(getSpSize(textSizeId)) }
 
     /**
      * 设置取消按钮高度
@@ -158,17 +177,20 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
      * @param resId:dimens资源Id
      * @see setCancelButtonHeight
      */
-    fun setCancelButtonHeightRes(@DimenRes resId: Int) = this.apply { setCancelButtonHeight(getPxSize(resId)) }
+    fun setCancelButtonHeightRes(@DimenRes resId: Int) =
+        this.apply { setCancelButtonHeight(getPxSize(resId)) }
 
     /**
      * 设置取消按钮的样式和点击事件
      */
     @JvmOverloads
-    fun setCancelButton(text: String = alertListBtnConfigs.text,
-                        textColor: Int = alertListBtnConfigs.textColor,
-                        textSize: Float = alertListBtnConfigs.textSize,
-                        height: Int = alertListBtnConfigs.height,
-                        listener: (dialog: DialogInterface) -> Unit) = this.apply {
+    fun setCancelButton(
+        text: String = alertListBtnConfigs.text,
+        textColor: Int = alertListBtnConfigs.textColor,
+        textSize: Float = alertListBtnConfigs.textSize,
+        height: Int = alertListBtnConfigs.height,
+        listener: (dialog: DialogInterface) -> Unit
+    ) = this.apply {
         alertListBtnConfigs.let {
             it.text = text
             it.textColor = textColor
@@ -181,18 +203,20 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
     /**
      * 点击列表选项后是否关闭对话框
      */
-    fun setItemClickedDismissible(itemDismissible: Boolean) = this.apply { this.itemDismissible = itemDismissible }
+    fun setItemClickedDismissible(itemDismissible: Boolean) =
+        this.apply { this.itemDismissible = itemDismissible }
 
     /**
      * item的点击事件
      */
     fun setItemClickListener(listener: (position: Int, text: String, itemView: TextView, dialog: DialogInterface) -> Unit) =
-            this.apply { itemClickListener = listener }
+        this.apply { itemClickListener = listener }
 
     /**
      * 取消按钮点击事件
      */
-    fun setCancelClickListener(listener: (dialog: DialogInterface) -> Unit) = this.apply { cancelClickListener = listener }
+    fun setCancelClickListener(listener: (dialog: DialogInterface) -> Unit) =
+        this.apply { cancelClickListener = listener }
 
     override fun onDestroy() {
         itemClickListener = null
@@ -211,37 +235,10 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
             this.fm = fragment.childFragmentManager
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("Tag","onCreate")
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e("Tag","onStart")
-        Log.e("Tag","items.size="+items.size)
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e("Tag","onStop")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e("Tag","onPause")
-    }
-
-    override fun onCancel(dialog: DialogInterface?) {
-        super.onCancel(dialog)
-        Log.e("Tag","onCancel")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("Tag","onResume")
-
-    }
 
 }
