@@ -280,4 +280,7 @@ public class JavaActivity extends AppCompatActivity {
                 .show();
 
     }
+
+    public void showLoadingDialog(View view) {
+    }
 }

@@ -213,7 +213,17 @@ class KotlinActivity : AppCompatActivity() {
 
     }
 
+    fun showLoadingDialog(view: View) {
+        ICustomDialog.build(this)
+            .setView(R.layout.dialog_ios_tip)
+            .setViewHandler { holder, dialog ->
+            }
+            .show()
+    }
+
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
     }
+
+
 }
