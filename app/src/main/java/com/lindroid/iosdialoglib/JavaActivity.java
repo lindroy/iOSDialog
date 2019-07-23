@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lindroid.iosdialog.CustomDialog;
+import com.lindroid.iosdialog.ICustomDialog;
 import com.lindroid.iosdialog.IAlertDialog;
 import com.lindroid.iosdialog.IAlertListDialog;
 import com.lindroid.iosdialog.IBottomListDialog;
@@ -262,8 +262,9 @@ public class JavaActivity extends AppCompatActivity {
      * 完全自定义布局对话框
      */
     public void showCustomDialog(View view) {
-        CustomDialog.build(this)
+        ICustomDialog.build(this)
                 .setView(R.layout.dialog_custom_view)
+                .setWidthScale(0.8F)
                 .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(ViewHolder holder, final DialogInterface dialog) {

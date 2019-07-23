@@ -17,5 +17,7 @@ abstract class BaseIAlertDialog<T : BaseIAlertDialog<T>>:BaseIOSDialog<T>(){
         paddingTop = IDialog.alertPaddingTop
         paddingSides = IDialog.alertPaddingSides
         paddingBottom = IDialog.alertPaddingBottom
+        setWidthScale(IDialog.alertWidthScale)
+        setAnimStyle(IDialog.alertAnimStyle)
     }
 }

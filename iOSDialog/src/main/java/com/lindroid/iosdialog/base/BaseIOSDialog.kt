@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
 import android.graphics.drawable.shapes.RoundRectShape
+import android.os.Bundle
 import android.support.annotation.*
 import android.view.Gravity
 import android.view.View
@@ -48,10 +49,10 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
 
     private var contentView: View? = null
 
-    init {
+   /* init {
         setWidthScale(IDialog.alertWidthScale)
         setAnimStyle(IDialog.alertAnimStyle)
-    }
+    }*/
 
     override fun onHandleView(dialogView: View): Boolean {
         tvTitle.apply {
@@ -100,6 +101,13 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
             }
         }
         return false
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.apply {
+
+        }
     }
 
     /**

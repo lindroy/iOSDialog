@@ -48,8 +48,6 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     override fun onHandleView(dialogView: View): Boolean {
         super.onHandleView(dialogView)
         setGravity(Gravity.BOTTOM)
-        setWidthScale(IDialog.bottomWidthScale)
-        setAnimStyle(R.style.IOSBottomDialogStyle)
 //        ShapeDrawable的宽高会跟随第一个设置background的View
         llContent.background = initBackgroundDrawable()
 
@@ -73,19 +71,32 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     }
 
     private fun initListView() {
-        if (items.isNotEmpty()){
+        if (items.isNotEmpty()) {
             lvChoices.apply {
-                visibility = View.GONE
-                divider = ContextCompat.getDrawable(mContext, R.drawable.dialog_ios_divider_vertical)
+                visibility = View.VISIBLE
+                divider =
+                    ContextCompat.getDrawable(mContext, R.drawable.dialog_ios_divider_vertical)
                 dividerHeight = resources.getDimensionPixelSize(R.dimen.ios_dialog_divider_size)
-                adapter = DialogListAdapter(mContext, DIALOG_BOTTOM_LIST, R.layout.item_dialog_list, items)
+                adapter = DialogListAdapter(
+                    mContext,
+                    DIALOG_BOTTOM_LIST,
+                    R.layout.item_dialog_list,
+                    items
+                )
                 setOnItemClickListener { parent, view, position, id ->
-                    itemClickListener?.invoke(position, items[position].text, view as TextView, dialog)
+                    itemClickListener?.invoke(
+                        position,
+                        items[position].text,
+                        view as TextView,
+                        dialog
+                    )
                     if (itemDismissible) {
                         dismiss()
                     }
                 }
             }
+        } else {
+            lvChoices.visibility = View.GONE
         }
 
     }
@@ -94,12 +105,14 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
      * 添加一个选项
      */
     @JvmOverloads
-    fun addItem(text: String,
-                @ColorInt textColor: Int = bottomItemConfigs.textColor,
-                textSize: Float = bottomItemConfigs.textSize) =
-            this.apply {
-                items.add(DialogItemBean(text, textColor, textSize))
-            }
+    fun addItem(
+        text: String,
+        @ColorInt textColor: Int = bottomItemConfigs.textColor,
+        textSize: Float = bottomItemConfigs.textSize
+    ) =
+        this.apply {
+            items.add(DialogItemBean(text, textColor, textSize))
+        }
 
     /**
      * 添加一组选项
@@ -124,12 +137,14 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
      * 设置取消按钮文字
      */
     fun setCancelText(
-            text: String) = this.apply { bottomBtnConfigs.text = text }
+        text: String
+    ) = this.apply { bottomBtnConfigs.text = text }
 
     /**
      * 设置取消按钮文字Id
      */
-    fun setCancelText(@StringRes stringId: Int) = this.apply { setCancelText(getResString(stringId)) }
+    fun setCancelText(@StringRes stringId: Int) =
+        this.apply { setCancelText(getResString(stringId)) }
 
     /**
      * 设置取消按钮文字颜色
@@ -139,7 +154,8 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * 设置取消按钮文字颜色Id
      */
-    fun setCancelTextColorRes(@ColorRes colorId: Int) = this.apply { setCancelTextColor(getResColor(colorId)) }
+    fun setCancelTextColorRes(@ColorRes colorId: Int) =
+        this.apply { setCancelTextColor(getResColor(colorId)) }
 
     /**
      * 设置取消按钮文字大小，单位为sp
@@ -150,7 +166,8 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
      * 设置取消按钮文字大小
      * @param dimens资源
      */
-    fun setCancelTextSizeRes(@DimenRes textSizeId: Int) = this.apply { setCancelTextSize(getSpSize(textSizeId)) }
+    fun setCancelTextSizeRes(@DimenRes textSizeId: Int) =
+        this.apply { setCancelTextSize(getSpSize(textSizeId)) }
 
     /**
      * 设置取消按钮高度
@@ -162,16 +179,19 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
      * @param resId:dimens资源Id
      * @see setCancelButtonHeight
      */
-    fun setCancelButtonHeightRes(@DimenRes resId: Int) = this.apply { setCancelButtonHeight(getPxSize(resId)) }
+    fun setCancelButtonHeightRes(@DimenRes resId: Int) =
+        this.apply { setCancelButtonHeight(getPxSize(resId)) }
 
     /**
      * 设置取消按钮的样式和点击事件
      */
-    fun setCancelButton(text: String = bottomBtnConfigs.text,
-                        textColor: Int = bottomBtnConfigs.textColor,
-                        textSize: Float = bottomBtnConfigs.textSize,
-                        height: Int = bottomBtnConfigs.height,
-                        listener: (dialog: DialogInterface) -> Unit) = this.apply {
+    fun setCancelButton(
+        text: String = bottomBtnConfigs.text,
+        textColor: Int = bottomBtnConfigs.textColor,
+        textSize: Float = bottomBtnConfigs.textSize,
+        height: Int = bottomBtnConfigs.height,
+        listener: (dialog: DialogInterface) -> Unit
+    ) = this.apply {
         bottomBtnConfigs.let {
             it.text = text
             it.textColor = textColor
@@ -184,24 +204,27 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * 点击取消按钮是否关闭对话框
      */
-    fun setCanCelClickedDismissible(dismissible: Boolean) = this.apply { this.dismissible = dismissible }
+    fun setCanCelClickedDismissible(dismissible: Boolean) =
+        this.apply { this.dismissible = dismissible }
 
     /**
      * 点击列表选项后是否关闭对话框
      */
-    fun setItemClickedDismissible(itemDismissible: Boolean) = this.apply { this.itemDismissible = itemDismissible }
+    fun setItemClickedDismissible(itemDismissible: Boolean) =
+        this.apply { this.itemDismissible = itemDismissible }
 
     /**
      * item的点击事件
      */
     @JvmOverloads
     fun setItemClickListener(listener: (position: Int, text: String, itemView: TextView, dialog: DialogInterface) -> Unit) =
-            this.apply { itemClickListener = listener }
+        this.apply { itemClickListener = listener }
 
     /**
      * 取消按钮点击事件
      */
-    fun setCancelClickListener(listener: (dialog: DialogInterface) -> Unit) = this.apply { cancelClickListener = listener }
+    fun setCancelClickListener(listener: (dialog: DialogInterface) -> Unit) =
+        this.apply { cancelClickListener = listener }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -217,21 +240,23 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
             paddingTop = IDialog.bottomPaddingTop
             paddingSides = IDialog.bottomPaddingSides
             paddingBottom = IDialog.bottomPaddingBottom
+            setWidthScale(IDialog.bottomWidthScale)
+            setAnimStyle(IDialog.bottomAnimStyle)
         }
 
         @JvmStatic
         fun build(activity: FragmentActivity) =
-                IBottomListDialog().apply {
-                    this.fm = activity.supportFragmentManager
-                    initConfig()
-                }
+            IBottomListDialog().apply {
+                this.fm = activity.supportFragmentManager
+                initConfig()
+            }
 
         @JvmStatic
         fun build(fragment: Fragment) =
-                IBottomListDialog().apply {
-                    this.fm = fragment.childFragmentManager
-                    initConfig()
-                }
+            IBottomListDialog().apply {
+                this.fm = fragment.childFragmentManager
+                initConfig()
+            }
     }
 
 }

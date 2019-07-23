@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.lindroid.iosdialoglib">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lindroid.iosdialoglib">
 
-    <dist:module dist:instant="true"/>
+    <dist:module dist:instant="true" />
 
     <application
         android:name=".app.App"
@@ -15,17 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".JavaActivity"
-                  android:label="@string/use_in_java">
-        </activity>
+        <activity
+            android:name=".JavaActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/use_in_java"/>
         <activity
             android:name=".KotlinActivity"
-            android:label="@string/use_in_kotlin"/>
+            android:configChanges="orientation|screenSize"
+            android:label="@string/use_in_kotlin" />
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

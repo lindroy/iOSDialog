@@ -1,7 +1,9 @@
 package com.lindroid.iosdialog.bean
 
+import android.os.Parcelable
 import android.support.annotation.ColorInt
 import android.view.Gravity
+import kotlinx.android.parcel.Parcelize
 
 /**
  * @author Lin
@@ -9,6 +11,7 @@ import android.view.Gravity
  * @function Dialog中的Text样式
  * @Description
  */
+@Parcelize
 data class TextConfigs(
         var textSize: Float,
         @ColorInt var textColor: Int,
@@ -20,4 +23,4 @@ data class TextConfigs(
         var paddingTop: Int = 0,
         var paddingRight: Int = 0,
         var paddingBottom: Int = 0
-)
+) : Parcelable

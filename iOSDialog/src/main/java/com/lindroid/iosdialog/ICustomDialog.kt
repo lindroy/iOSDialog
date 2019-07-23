@@ -12,7 +12,7 @@ import com.lindroid.iosdialog.base.BaseIOSDialog
  * @function 自定义布局对话框
  * @Description
  */
-class CustomDialog : BaseIOSDialog<CustomDialog>() {
+class ICustomDialog : BaseIOSDialog<ICustomDialog>() {
     /**
      * 子类继承需要创建的对话框布局Id
      */
@@ -21,18 +21,18 @@ class CustomDialog : BaseIOSDialog<CustomDialog>() {
     /**
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */
-    override fun onHandleView(contentView: View): Boolean = false
+    override fun onHandleView(dialogView: View): Boolean = false
 
     companion object {
         @JvmStatic
         fun build(activity: FragmentActivity) =
-                CustomDialog().apply {
+                ICustomDialog().apply {
                     this.fm = activity.supportFragmentManager
                 }
 
         @JvmStatic
         fun build(fragment: Fragment) =
-                CustomDialog().apply {
+                ICustomDialog().apply {
                     this.fm = fragment.childFragmentManager
                 }
     }

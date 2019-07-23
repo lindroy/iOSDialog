@@ -8,11 +8,13 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.annotation.FloatRange
 import android.support.annotation.LayoutRes
+import android.support.annotation.Px
 import android.support.annotation.StyleRes
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentManager
 import android.view.*
 import com.lindroid.iosdialog.IDialog
+import com.lindroid.iosdialog.util.dp2px
 import com.lindroid.iosdialog.util.screenWidth
 import com.lindroid.iosdialog.viewholder.ViewHolder
 
@@ -22,7 +24,7 @@ import com.lindroid.iosdialog.viewholder.ViewHolder
  * @function 对话框基类
  * @Description
  */
-abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
+abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
 
     private var dialogTag = "iOSDialog"
     protected val mContext = IDialog.context
@@ -36,6 +38,7 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
     protected var dialogView: View? = null
     private var animStyle = 0
     private var widthScale = 0F
+    private var widthPx = 0
     private var gravity: Int = Gravity.CENTER
     protected lateinit var fm: FragmentManager
 
@@ -48,9 +51,13 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
     /**
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */
-   protected abstract fun onHandleView(dialogView: View): Boolean
+    protected abstract fun onHandleView(dialogView: View): Boolean
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         //去除4.4以下系统中出现的标题栏
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return when {
@@ -79,7 +86,9 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //设置窗体动画
             setWindowAnimations(animStyle)
-            if (widthScale > 0) {
+            if (widthPx > 0) {
+                params.width = widthPx
+            } else if (widthScale > 0) {
                 params.width = (screenWidth * widthScale).toInt()
             }
             attributes = params
@@ -111,9 +120,21 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
     /**
      * 设置宽度与屏幕宽度比例
      * @param scale : 范围为0~1.0，为1时占满宽度
-     *
      */
-    fun setWidthScale(@FloatRange(from = 0.0, to = 1.0) scale: Float) = this.apply { widthScale = scale } as T
+    fun setWidthScale(@FloatRange(from = 0.0, to = 1.0) scale: Float) =
+        this.apply { widthScale = scale } as T
+
+    /**
+     * 设置对话框宽度
+     * @param width:宽度值，单位为px
+     */
+    fun setWidthPx(@Px width: Int) = this.apply { widthPx = width } as T
+
+    /**
+     * 设置对话框宽度
+     * @param width:宽度值，单位为dp
+     */
+    fun setWidthDp(width: Int) = setWidthPx(dp2px(width.toFloat()).toInt())
 
     /**
      * 设置对话框中屏幕中的位置
@@ -124,7 +145,7 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
      * 处理对话框中的View
      */
     fun setViewHandler(viewHandler: (holder: ViewHolder, dialog: DialogInterface) -> Unit) =
-            this.apply { this.viewHandler = viewHandler } as T
+        this.apply { this.viewHandler = viewHandler } as T
 
     /**
      * 对话框消失监听
@@ -134,7 +155,8 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment(){
     /**
      * 点击对话框外部是否关闭对话框
      */
-    fun setCancelOutside(isCancelable: Boolean) = this.apply { this.isCancelable = isCancelable } as T
+    fun setCancelOutside(isCancelable: Boolean) =
+        this.apply { this.isCancelable = isCancelable } as T
 
     override fun onDestroy() {
         viewHandler = null

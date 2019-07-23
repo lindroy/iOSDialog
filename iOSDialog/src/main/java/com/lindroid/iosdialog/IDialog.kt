@@ -25,7 +25,11 @@ object IDialog {
 
     internal var alertWidthScale = 0.7F
 
+    internal var alertWidthPx = 0
+
     internal var bottomWidthScale = 0.95F
+
+    internal var bottomWidthPx = 0
 
     internal var cornerRadius = 0F
 
@@ -49,11 +53,19 @@ object IDialog {
     internal var alertAnimStyle: Int = R.style.IOSAlertDialogStyle
 
     internal val alertPosBtnConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_alert_button_text_size), textColorBlue, text = getResString(R.string.ios_dialog_positive_text))
+        TextConfigs(
+            getSpSize(R.dimen.ios_alert_button_text_size),
+            textColorBlue,
+            text = getResString(R.string.ios_dialog_positive_text)
+        )
     }
 
     internal val alertNegBtnConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_alert_button_text_size), textColorRed, text = getResString(R.string.ios_dialog_negative_text))
+        TextConfigs(
+            getSpSize(R.dimen.ios_alert_button_text_size),
+            textColorRed,
+            text = getResString(R.string.ios_dialog_negative_text)
+        )
     }
 
     internal val alertListItemConfigs by lazy {
@@ -90,8 +102,10 @@ object IDialog {
     }
 
     internal val bottomBtnConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_bottom_button_text_size), textColorBlue,
-                text = context.getString(R.string.ios_dialog_negative_text))
+        TextConfigs(
+            getSpSize(R.dimen.ios_bottom_button_text_size), textColorBlue,
+            text = context.getString(R.string.ios_dialog_negative_text)
+        )
     }
 
     internal val bottomListItemConfigs by lazy {
@@ -154,13 +168,20 @@ object IDialog {
          * 设置背景透明度
          * 范围为0~1.0,0为全透明，1为全不透明；默认为0.85
          */
-        fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) = this.apply { IDialog.alpha = alpha }
+        fun setAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float) =
+            this.apply { IDialog.alpha = alpha }
 
         /**
          * 设置提示对话框与屏幕宽度比
          * 默认为0.7
          */
         fun setAlertWidthScale(widthScale: Float) = this.apply { alertWidthScale = widthScale }
+
+        /**
+         * 设置提示对话框宽度，默认为0，优先于setAlertWidthScale
+         * @param width:宽度值，单位为px
+         */
+        fun setAlertWidthPx(width: Int) = this.apply { alertWidthPx = width }
 
         /**
          * 设置提示对话框动画
@@ -195,10 +216,11 @@ object IDialog {
          * 设置提示对话框标题样式
          */
         @JvmOverloads
-        fun setAlertTitleView(textSize: Float = alertTitleConfigs.textSize,
-                              @ColorInt textColor: Int = alertTitleConfigs.textColor,
-                              text: String = "",
-                              gravity: Int = alertTitleConfigs.gravity
+        fun setAlertTitleView(
+            textSize: Float = alertTitleConfigs.textSize,
+            @ColorInt textColor: Int = alertTitleConfigs.textColor,
+            text: String = "",
+            gravity: Int = alertTitleConfigs.gravity
         ) = this.apply {
             alertTitleConfigs.also {
                 it.textSize = textSize
@@ -212,9 +234,11 @@ object IDialog {
          * 设置提示对话框消息文字样式
          */
         @JvmOverloads
-        fun setAlertMsgView(textSize: Float = alertMsgConfigs.textSize,
-                            @ColorInt textColor: Int = alertMsgConfigs.textColor,
-                            gravity: Int = alertMsgConfigs.gravity) = this.apply {
+        fun setAlertMsgView(
+            textSize: Float = alertMsgConfigs.textSize,
+            @ColorInt textColor: Int = alertMsgConfigs.textColor,
+            gravity: Int = alertMsgConfigs.gravity
+        ) = this.apply {
             alertMsgConfigs.also {
                 it.textSize = textSize
                 it.textColor = textColor
@@ -232,10 +256,11 @@ object IDialog {
          * 设置提示对话框确认按钮样式
          */
         @JvmOverloads
-        fun setAlertPosButton(text: String = alertPosBtnConfigs.text,
-                              textSize: Float = alertPosBtnConfigs.textSize,
-                              @ColorInt textColor: Int = alertPosBtnConfigs.textColor,
-                              gravity: Int = alertPosBtnConfigs.gravity
+        fun setAlertPosButton(
+            text: String = alertPosBtnConfigs.text,
+            textSize: Float = alertPosBtnConfigs.textSize,
+            @ColorInt textColor: Int = alertPosBtnConfigs.textColor,
+            gravity: Int = alertPosBtnConfigs.gravity
         ) = this.apply {
             alertPosBtnConfigs.also {
                 it.text = text
@@ -249,10 +274,11 @@ object IDialog {
          * 设置提示对话框取消按钮样式
          */
         @JvmOverloads
-        fun setAlertNegButton(text: String = alertNegBtnConfigs.text,
-                              textSize: Float = alertNegBtnConfigs.textSize,
-                              @ColorInt textColor: Int = alertNegBtnConfigs.textColor,
-                              gravity: Int = alertNegBtnConfigs.gravity
+        fun setAlertNegButton(
+            text: String = alertNegBtnConfigs.text,
+            textSize: Float = alertNegBtnConfigs.textSize,
+            @ColorInt textColor: Int = alertNegBtnConfigs.textColor,
+            gravity: Int = alertNegBtnConfigs.gravity
         ) = this.apply {
             alertNegBtnConfigs.also {
                 it.text = text
@@ -268,10 +294,11 @@ object IDialog {
          * @param paddingSides:左右的padding值
          */
         @JvmOverloads
-        fun setAlertListItem(textSize: Float = alertListItemConfigs.textSize,
-                             @ColorInt textColor: Int = alertListItemConfigs.textColor,
-                             height: Int = alertListItemConfigs.height,
-                             paddingSides: Int = 0
+        fun setAlertListItem(
+            textSize: Float = alertListItemConfigs.textSize,
+            @ColorInt textColor: Int = alertListItemConfigs.textColor,
+            height: Int = alertListItemConfigs.height,
+            paddingSides: Int = 0
         ) = this.apply {
             alertListItemConfigs.also {
                 it.textSize = textSize
@@ -283,10 +310,16 @@ object IDialog {
         }
 
         /**
-         * 设置底部对话框与屏幕宽度之比
-         * 默认为0.95
+         * 设置底部对话框与屏幕宽度之比，默认为0.95
+         *
          */
         fun setBottomWidthScale(widthScale: Float) = this.apply { bottomWidthScale = widthScale }
+
+        /**
+         * 设置底部对话框的宽度，默认为0，优先于setBottomWidthScale
+         * @param width:宽度值，单位为px
+         */
+        fun setBottomWidthPx(width:Int) = this.apply { bottomWidthPx = width }
 
         /**
          * 底部对话框的动画样式
@@ -321,10 +354,11 @@ object IDialog {
          * 设置IBottomListDialog的标题样式
          */
         @JvmOverloads
-        fun setBottomListTitleView(textSize: Float = bottomTitleConfigs.textSize,
-                                   @ColorInt textColor: Int = bottomTitleConfigs.textColor,
-                                   text: String = "",
-                                   gravity: Int = bottomTitleConfigs.gravity
+        fun setBottomListTitleView(
+            textSize: Float = bottomTitleConfigs.textSize,
+            @ColorInt textColor: Int = bottomTitleConfigs.textColor,
+            text: String = "",
+            gravity: Int = bottomTitleConfigs.gravity
         ) = this.apply {
             bottomTitleConfigs.also {
                 it.text = text
@@ -338,9 +372,10 @@ object IDialog {
          * 设置IBottomListDialog的消息文字文字样式
          */
         @JvmOverloads
-        fun setBottomListMsgView(textSize: Float = bottomMsgConfigs.textSize,
-                                 @ColorInt textColor: Int = bottomMsgConfigs.textColor,
-                                 gravity: Int = bottomMsgConfigs.gravity
+        fun setBottomListMsgView(
+            textSize: Float = bottomMsgConfigs.textSize,
+            @ColorInt textColor: Int = bottomMsgConfigs.textColor,
+            gravity: Int = bottomMsgConfigs.gravity
         ) = this.apply {
             bottomMsgConfigs.also {
                 it.textSize = textSize
@@ -353,10 +388,11 @@ object IDialog {
          * 设置IBottomListDialog的取消按钮样式
          */
         @JvmOverloads
-        fun setBottomListButton(textSize: Float = bottomBtnConfigs.textSize,
-                                @ColorInt textColor: Int = bottomBtnConfigs.textColor,
-                                text: String = bottomBtnConfigs.text,
-                                height: Int = bottomBtnConfigs.height
+        fun setBottomListButton(
+            textSize: Float = bottomBtnConfigs.textSize,
+            @ColorInt textColor: Int = bottomBtnConfigs.textColor,
+            text: String = bottomBtnConfigs.text,
+            height: Int = bottomBtnConfigs.height
         ) = this.apply {
             bottomBtnConfigs.also {
                 it.text = text
@@ -370,10 +406,11 @@ object IDialog {
          * 设置IBottomListDialog的选项样式
          * @param paddingSides:左右的padding值
          */
-        fun setBottomListItem(textSize: Float = bottomListItemConfigs.textSize,
-                              @ColorInt textColor: Int = bottomListItemConfigs.textColor,
-                              height: Int = bottomListItemConfigs.height,
-                              paddingSides: Int = 0
+        fun setBottomListItem(
+            textSize: Float = bottomListItemConfigs.textSize,
+            @ColorInt textColor: Int = bottomListItemConfigs.textColor,
+            height: Int = bottomListItemConfigs.height,
+            paddingSides: Int = 0
         ) = this.apply {
             bottomListItemConfigs.also {
                 it.textSize = textSize

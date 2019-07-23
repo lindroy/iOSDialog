@@ -1,6 +1,7 @@
 package com.lindroid.iosdialog
 
 import android.content.DialogInterface
+import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
@@ -8,6 +9,7 @@ import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.lindroid.iosdialog.adapter.DialogListAdapter
@@ -208,6 +210,38 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
         fun build(fragment: Fragment) = IAlertListDialog().apply {
             this.fm = fragment.childFragmentManager
         }
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("Tag","onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e("Tag","onStart")
+        Log.e("Tag","items.size="+items.size)
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("Tag","onStop")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("Tag","onPause")
+    }
+
+    override fun onCancel(dialog: DialogInterface?) {
+        super.onCancel(dialog)
+        Log.e("Tag","onCancel")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("Tag","onResume")
+
     }
 
 }

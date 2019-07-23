@@ -11,11 +11,12 @@
         android:layout_height="150dp" />
 
     <TextView
+
         android:background="@android:color/white"
         android:id="@+id/tvDismiss"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:text="点击关闭对话框"
+        android:text="点我关闭"
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
