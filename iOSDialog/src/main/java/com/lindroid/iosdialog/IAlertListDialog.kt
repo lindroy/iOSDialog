@@ -1,7 +1,6 @@
 package com.lindroid.iosdialog
 
 import android.content.DialogInterface
-import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
@@ -235,10 +234,5 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
             this.fm = fragment.childFragmentManager
         }
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
 
 }
