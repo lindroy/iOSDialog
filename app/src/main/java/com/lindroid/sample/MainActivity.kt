@@ -1,8 +1,9 @@
-package com.lindroid.iosdialoglib
+package com.lindroid.sample
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.lindroid.iosdialoglib.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,10 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btnKotlin.setOnClickListener {
-            startActivity(Intent(this,KotlinActivity::class.java))
+            startActivity(Intent(this, KotlinActivity::class.java))
         }
         btnJava.setOnClickListener {
-            startActivity(Intent(this,JavaActivity::class.java))
+            startActivity(Intent(this, JavaActivity::class.java))
         }
     }
 }

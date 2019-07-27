@@ -1,4 +1,4 @@
-package com.lindroid.iosdialoglib;
+package com.lindroid.sample;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +13,7 @@ import com.lindroid.iosdialog.IAlertDialog;
 import com.lindroid.iosdialog.IAlertListDialog;
 import com.lindroid.iosdialog.IBottomListDialog;
 import com.lindroid.iosdialog.viewholder.ViewHolder;
+import com.lindroid.iosdialoglib.R;
 
 import java.util.Arrays;
 
@@ -79,7 +80,7 @@ public class JavaActivity extends AppCompatActivity {
                 .addItem("水浒传")
                 .addItem("三国演义")
                 .setCancelText(R.string.cancel)
-                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                .setOnCancelClickListener(new Function1<DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(DialogInterface dialogInterface) {
                         Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
@@ -87,7 +88,7 @@ public class JavaActivity extends AppCompatActivity {
                     }
                 })
                 .setItemClickedDismissible(true)
-                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                .setOnItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
                         Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
@@ -106,7 +107,7 @@ public class JavaActivity extends AppCompatActivity {
                 .setMessage("请选择你喜欢的城市")
                 .addItems(Arrays.asList(getResources().getStringArray(R.array.cities)))
                 .setCancelText(R.string.cancel)
-                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                .setOnCancelClickListener(new Function1<DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(DialogInterface dialogInterface) {
                         Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
@@ -114,7 +115,7 @@ public class JavaActivity extends AppCompatActivity {
                     }
                 })
                 .setItemClickedDismissible(true)
-                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                .setOnItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
                         Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
@@ -193,7 +194,7 @@ public class JavaActivity extends AppCompatActivity {
                 .setContentView(R.layout.dialog_content_view)
                 .setPosButtonText(R.string.confirm)
                 .setNegButtonText(R.string.cancel)
-                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                .setOnViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(ViewHolder holder, DialogInterface dialogInterface) {
                         holder.setOnClickListener(R.id.imageView, new View.OnClickListener() {
@@ -218,7 +219,7 @@ public class JavaActivity extends AppCompatActivity {
 //                    .setMessage("确定要退出登录吗？")
                 .setContentView(R.layout.dialog_content_view)
                 .setCancelText(R.string.confirm)
-                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                .setOnViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(ViewHolder holder, DialogInterface dialogInterface) {
                         holder.setOnClickListener(R.id.imageView, new View.OnClickListener() {
@@ -243,7 +244,7 @@ public class JavaActivity extends AppCompatActivity {
 //                    .setMessage("确定要退出登录吗？")
                 .setContentView(R.layout.dialog_content_view)
                 .setCancelText(R.string.confirm)
-                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                .setOnViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(ViewHolder holder, DialogInterface dialogInterface) {
                         holder.setOnClickListener(R.id.imageView, new View.OnClickListener() {
@@ -265,7 +266,7 @@ public class JavaActivity extends AppCompatActivity {
         ICustomDialog.build(this)
                 .setView(R.layout.dialog_custom_view)
                 .setWidthScale(0.8F)
-                .setViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
+                .setOnViewHandler(new Function2<ViewHolder, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(ViewHolder holder, final DialogInterface dialog) {
                         holder.setOnClickListener(R.id.tvDismiss, new View.OnClickListener() {

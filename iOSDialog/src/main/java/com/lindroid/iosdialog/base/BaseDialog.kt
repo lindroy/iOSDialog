@@ -108,7 +108,7 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
     }
 
     /**
-     * 设置DialogFragment的Tag，默认为“BaseDialog”
+     * 设置DialogFragment的Tag，默认为“iOSDialog”
      */
     fun setTag(tag: String) = this.apply { dialogTag = tag } as T
 
@@ -144,13 +144,13 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
     /**
      * 处理对话框中的View
      */
-    fun setViewHandler(viewHandler: (holder: ViewHolder, dialog: DialogInterface) -> Unit) =
+    fun setOnViewHandler(viewHandler: (holder: ViewHolder, dialog: DialogInterface) -> Unit) =
         this.apply { this.viewHandler = viewHandler } as T
 
     /**
      * 对话框消失监听
      */
-    fun setDismissListener(listener: () -> Unit) = this.apply { dismissListener = listener } as T
+    fun setOnDismissListener(listener: () -> Unit) = this.apply { dismissListener = listener } as T
 
     /**
      * 点击对话框外部是否关闭对话框

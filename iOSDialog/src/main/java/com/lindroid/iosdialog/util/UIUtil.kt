@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.support.annotation.ColorRes
+import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
 import android.support.v4.content.ContextCompat
 import android.view.WindowManager
@@ -16,6 +17,7 @@ import com.lindroid.iosdialog.IDialog.context
  * @function 工具类
  * @Description
  */
+
 internal fun dp2px(dpValue: Float): Float {
     val scale = IDialog.context.resources.displayMetrics.density
     return (dpValue * scale + 0.5F)
@@ -32,11 +34,13 @@ internal fun getPxSize(dimenId: Int) = IDialog.context.resources.getDimensionPix
 
 internal fun getResColor(@ColorRes colorId: Int) = ContextCompat.getColor(IDialog.context, colorId)
 
+internal fun getResDrawable(@DrawableRes resId:Int) = ContextCompat.getDrawable(context,resId)
+
 internal fun getResString(@StringRes stringId: Int) = IDialog.context.getString(stringId)
 
 internal val screenWidth: Int
     get() {
-        val wm = context!!.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val point = Point()
         when (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             true -> wm.defaultDisplay.getRealSize(point)

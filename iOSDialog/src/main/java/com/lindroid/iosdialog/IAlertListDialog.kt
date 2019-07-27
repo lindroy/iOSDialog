@@ -19,6 +19,7 @@ import com.lindroid.iosdialog.util.getResColor
 import com.lindroid.iosdialog.util.getResString
 import com.lindroid.iosdialog.util.getSpSize
 import kotlinx.android.synthetic.main.dialog_alert_list_ios.*
+import java.util.*
 
 /**
  * @author Lin
@@ -208,13 +209,13 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
     /**
      * item的点击事件
      */
-    fun setItemClickListener(listener: (position: Int, text: String, itemView: TextView, dialog: DialogInterface) -> Unit) =
+    fun setOnItemClickListener(listener: (position: Int, text: String, itemView: TextView, dialog: DialogInterface) -> Unit) =
         this.apply { itemClickListener = listener }
 
     /**
      * 取消按钮点击事件
      */
-    fun setCancelClickListener(listener: (dialog: DialogInterface) -> Unit) =
+    fun setOnCancelClickListener(listener: (dialog: DialogInterface) -> Unit) =
         this.apply { cancelClickListener = listener }
 
     override fun onDestroy() {

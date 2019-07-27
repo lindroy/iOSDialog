@@ -66,9 +66,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:onClick="showLoadingDialog"
-        android:text="正在加载弹窗"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

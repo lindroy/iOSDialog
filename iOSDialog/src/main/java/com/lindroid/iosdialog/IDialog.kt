@@ -145,10 +145,6 @@ object IDialog {
 
 
     class Config {
-        companion object {
-            @JvmStatic
-            fun build() = Config()
-        }
 
         /**
          * 设置背景颜色
@@ -419,6 +415,11 @@ object IDialog {
                 it.paddingLeft = paddingSides
                 it.paddingRight = paddingSides
             }
+        }
+
+        companion object {
+            @JvmStatic
+            fun build() = Config()
         }
 
     }

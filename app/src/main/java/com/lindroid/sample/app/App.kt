@@ -1,4 +1,4 @@
-package com.lindroid.iosdialoglib.app
+package com.lindroid.sample.app
 
 import android.app.Application
 import com.lindroid.iosdialog.IDialog

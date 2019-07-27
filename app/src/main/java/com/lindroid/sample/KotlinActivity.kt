@@ -1,4 +1,4 @@
-package com.lindroid.iosdialoglib
+package com.lindroid.sample
 
 import android.content.Context
 import android.content.res.Configuration
@@ -10,6 +10,7 @@ import com.lindroid.iosdialog.IAlertDialog
 import com.lindroid.iosdialog.IAlertListDialog
 import com.lindroid.iosdialog.IBottomListDialog
 import com.lindroid.iosdialog.ICustomDialog
+import com.lindroid.iosdialoglib.R
 import java.util.*
 
 /**
@@ -65,11 +66,11 @@ class KotlinActivity : AppCompatActivity() {
             .addItem("水浒传")
             .addItem("三国演义")
             .setCancelText(R.string.cancel)
-            .setCancelClickListener {
+            .setOnCancelClickListener {
                 Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
             }
             .setItemClickedDismissible(true)
-            .setItemClickListener { pos, s, textView, dialogInterface ->
+            .setOnItemClickListener { pos, s, textView, dialogInterface ->
                 Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
             }
             .show()
@@ -84,11 +85,11 @@ class KotlinActivity : AppCompatActivity() {
             .setMessage("请选择你喜欢的城市")
             .addItems(Arrays.asList(*resources.getStringArray(R.array.cities)))
             .setCancelText(R.string.cancel)
-            .setCancelClickListener {
+            .setOnCancelClickListener {
                 Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
             }
             .setItemClickedDismissible(true)
-            .setItemClickListener { pos, s, textView, dialogInterface ->
+            .setOnItemClickListener { pos, s, textView, dialogInterface ->
                 Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
             }
             .show()
@@ -147,7 +148,7 @@ class KotlinActivity : AppCompatActivity() {
             .setContentView(R.layout.dialog_content_view)
             .setPosButtonText(R.string.confirm)
             .setNegButtonText(R.string.cancel)
-            .setViewHandler { holder, dialogInterface ->
+            .setOnViewHandler { holder, dialogInterface ->
                 holder.setOnClickListener(
                     R.id.imageView,
                     View.OnClickListener {
@@ -168,7 +169,7 @@ class KotlinActivity : AppCompatActivity() {
             //                    .setMessage("确定要退出登录吗？")
             .setContentView(R.layout.dialog_content_view)
             .setCancelText(R.string.confirm)
-            .setViewHandler { holder, dialogInterface ->
+            .setOnViewHandler { holder, dialogInterface ->
                 holder.setOnClickListener(
                     R.id.imageView,
                     View.OnClickListener {
@@ -189,7 +190,7 @@ class KotlinActivity : AppCompatActivity() {
             //                    .setMessage("确定要退出登录吗？")
             .setContentView(R.layout.dialog_content_view)
             .setCancelText(R.string.confirm)
-            .setViewHandler { holder, dialogInterface ->
+            .setOnViewHandler { holder, dialogInterface ->
                 holder.setOnClickListener(
                     R.id.imageView,
                     View.OnClickListener {
@@ -206,20 +207,13 @@ class KotlinActivity : AppCompatActivity() {
         ICustomDialog.build(this)
             .setView(R.layout.dialog_custom_view)
             .setWidthScale(0.8F)
-            .setViewHandler { holder, dialog ->
+            .setOnViewHandler { holder, dialog ->
                 holder.setOnClickListener(R.id.tvDismiss, View.OnClickListener { dialog.dismiss() })
             }
             .show()
 
     }
 
-    fun showLoadingDialog(view: View) {
-        ICustomDialog.build(this)
-            .setView(R.layout.dialog_ios_tip)
-            .setViewHandler { holder, dialog ->
-            }
-            .show()
-    }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)

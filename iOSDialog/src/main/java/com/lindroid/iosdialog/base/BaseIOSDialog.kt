@@ -14,6 +14,7 @@ import com.lindroid.iosdialog.IDialog
 import com.lindroid.iosdialog.bean.TextConfigs
 import com.lindroid.iosdialog.util.getResColor
 import com.lindroid.iosdialog.util.getResString
+import com.lindroid.iosdialog.util.getSpSize
 import kotlinx.android.synthetic.main.layout_alert_dialog_title.*
 import kotlinx.android.synthetic.main.layout_custom_view_container.*
 import kotlinx.android.synthetic.main.layout_dialog_top_panel.*
@@ -159,6 +160,11 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
      * 设置标题文字大小
      */
     fun setTitleSize(titleSize: Float) = this.apply { titleConfig.textSize = titleSize } as T
+    /**
+     * 设置标题文字大小
+     * @param resId:dimens.xml中的资源，单位为sp
+     */
+    fun setTitleSize(@DimenRes resId: Int) = this.apply { setTitleSize(getSpSize(resId)) }
 
     /**
      * 设置标题文字颜色
@@ -187,9 +193,15 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
     fun setMessage(@StringRes stringId: Int) = this.apply { setMessage(getResString(stringId)) } as T
 
     /**
-     * 设置消息文字大小
+     * 设置消息文字大小，单位为sp
      */
     fun setMessageSize(messageSize: Float) = this.apply { msgConfig.textSize = messageSize } as T
+
+    /**
+     * 设置消息文字大小
+     * @param resId:dimens.xml中的资源，单位为sp
+     */
+    fun setMessageSize(@DimenRes resId:Int) = this.apply { setMessageSize(getSpSize(resId)) }
 
     /**
      * 设置消息文字颜色

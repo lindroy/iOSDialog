@@ -32,4 +32,12 @@
     <dimen name="ios_bottom_button_screen_margin">8dp</dimen>
     <dimen name="ios_bottom_list_item_text_size">14sp</dimen>
     <!--以上为底部对话框资源-->
+
+    <!--以下为提示弹窗资源-->
+    <dimen name="tip_dialog_corner_radius">12dp</dimen>
+    <dimen name="tip_dialog_padding_top">15dp</dimen>
+    <dimen name="tip_dialog_padding_bottom">15dp</dimen>
+    <dimen name="tip_dialog_message_size">14sp</dimen>
+    <!--以上为提示弹窗资源-->
+
 </resources>
