@@ -137,7 +137,7 @@ public class JavaActivity extends AppCompatActivity {
                 .addItem("水浒传")
                 .addItem("三国演义")
                 .setCancelText(R.string.cancel)
-                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                .setOnCancelClickListener(new Function1<DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(DialogInterface dialogInterface) {
                         Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
@@ -145,7 +145,7 @@ public class JavaActivity extends AppCompatActivity {
                     }
                 })
                 .setItemClickedDismissible(true)
-                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                .setOnItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
                         Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();
@@ -164,7 +164,7 @@ public class JavaActivity extends AppCompatActivity {
                 .setMessage("请选择你喜欢的城市")
                 .addItems(Arrays.asList(getResources().getStringArray(R.array.cities)))
                 .setCancelText(R.string.cancel)
-                .setCancelClickListener(new Function1<DialogInterface, Unit>() {
+                .setOnCancelClickListener(new Function1<DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(DialogInterface dialogInterface) {
                         Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show();
@@ -172,7 +172,7 @@ public class JavaActivity extends AppCompatActivity {
                     }
                 })
                 .setItemClickedDismissible(true)
-                .setItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
+                .setOnItemClickListener(new Function4<Integer, String, TextView, DialogInterface, Unit>() {
                     @Override
                     public Unit invoke(Integer pos, String s, TextView textView, DialogInterface dialogInterface) {
                         Toast.makeText(mContext, "你选择了" + s, Toast.LENGTH_LONG).show();

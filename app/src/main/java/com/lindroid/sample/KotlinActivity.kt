@@ -107,11 +107,11 @@ class KotlinActivity : AppCompatActivity() {
             .addItem("水浒传")
             .addItem("三国演义")
             .setCancelText(R.string.cancel)
-            .setCancelClickListener {
+            .setOnCancelClickListener {
                 Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
             }
             .setItemClickedDismissible(true)
-            .setItemClickListener { pos, s, textView, dialogInterface ->
+            .setOnItemClickListener { pos, s, textView, dialogInterface ->
                 Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
             }
             .show()
@@ -126,11 +126,11 @@ class KotlinActivity : AppCompatActivity() {
             .setMessage("请选择你喜欢的城市")
             .addItems(Arrays.asList(*resources.getStringArray(R.array.cities)))
             .setCancelText(R.string.cancel)
-            .setCancelClickListener {
+            .setOnCancelClickListener {
                 Toast.makeText(mContext, getString(R.string.cancel), Toast.LENGTH_LONG).show()
             }
             .setItemClickedDismissible(true)
-            .setItemClickListener { pos, s, textView, dialogInterface ->
+            .setOnItemClickListener { pos, s, textView, dialogInterface ->
                 Toast.makeText(mContext, "你选择了$s", Toast.LENGTH_LONG).show()
             }
             .show()

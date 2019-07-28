@@ -216,14 +216,13 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * item的点击事件
      */
-    @JvmOverloads
-    fun setItemClickListener(listener: (position: Int, text: String, itemView: TextView, dialog: DialogInterface) -> Unit) =
+    fun setOnItemClickListener(listener: (position: Int, text: String, itemView: TextView, dialog: DialogInterface) -> Unit) =
         this.apply { itemClickListener = listener }
 
     /**
      * 取消按钮点击事件
      */
-    fun setCancelClickListener(listener: (dialog: DialogInterface) -> Unit) =
+    fun setOnCancelClickListener(listener: (dialog: DialogInterface) -> Unit) =
         this.apply { cancelClickListener = listener }
 
     override fun onDestroy() {
