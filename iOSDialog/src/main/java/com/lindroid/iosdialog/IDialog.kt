@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.support.annotation.ColorInt
 import android.support.annotation.FloatRange
 import android.support.annotation.StyleRes
-import com.lindroid.iosdialog.bean.TextConfigs
+import com.lindroid.iosdialog.bean.TextParams
 import com.lindroid.iosdialog.util.getPxSize
 import com.lindroid.iosdialog.util.getResColor
 import com.lindroid.iosdialog.util.getResString
@@ -40,11 +40,11 @@ object IDialog {
     internal var alertBtnHeight = 0
 
     internal val alertTitleConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_alert_title_size), textColorBlack)
+        TextParams(getSpSize(R.dimen.ios_alert_title_size), textColorBlack)
     }
 
     internal val alertMsgConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_alert_message_size), textColorBlack)
+        TextParams(getSpSize(R.dimen.ios_alert_message_size), textColorBlack)
     }
 
     /**
@@ -53,7 +53,7 @@ object IDialog {
     internal var alertAnimStyle: Int = R.style.IOSAlertDialogStyle
 
     internal val alertPosBtnConfigs by lazy {
-        TextConfigs(
+        TextParams(
             getSpSize(R.dimen.ios_alert_button_text_size),
             textColorBlue,
             text = getResString(R.string.ios_dialog_positive_text)
@@ -61,7 +61,7 @@ object IDialog {
     }
 
     internal val alertNegBtnConfigs by lazy {
-        TextConfigs(
+        TextParams(
             getSpSize(R.dimen.ios_alert_button_text_size),
             textColorRed,
             text = getResString(R.string.ios_dialog_negative_text)
@@ -69,7 +69,7 @@ object IDialog {
     }
 
     internal val alertListItemConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_alert_list_item_text_size), textColorBlue)
+        TextParams(getSpSize(R.dimen.ios_alert_list_item_text_size), textColorBlue)
     }
 
     internal var alertPaddingTop = 0
@@ -94,22 +94,22 @@ object IDialog {
     internal var bottomAnimStyle: Int = R.style.IOSBottomDialogStyle
 
     internal val bottomTitleConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_bottom_title_size), textColorBlack)
+        TextParams(getSpSize(R.dimen.ios_bottom_title_size), textColorBlack)
     }
 
     internal val bottomMsgConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_bottom_message_size), textColorBlack)
+        TextParams(getSpSize(R.dimen.ios_bottom_message_size), textColorBlack)
     }
 
     internal val bottomBtnConfigs by lazy {
-        TextConfigs(
+        TextParams(
             getSpSize(R.dimen.ios_bottom_button_text_size), textColorBlue,
             text = context.getString(R.string.ios_dialog_negative_text)
         )
     }
 
     internal val bottomListItemConfigs by lazy {
-        TextConfigs(getSpSize(R.dimen.ios_bottom_list_item_text_size), textColorBlue)
+        TextParams(getSpSize(R.dimen.ios_bottom_list_item_text_size), textColorBlue)
     }
 
     private lateinit var application: Application

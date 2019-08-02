@@ -14,7 +14,7 @@ import android.widget.TextView
 import com.lindroid.iosdialog.adapter.DialogListAdapter
 import com.lindroid.iosdialog.base.BaseIOSDialog
 import com.lindroid.iosdialog.bean.DialogItemBean
-import com.lindroid.iosdialog.bean.TextConfigs
+import com.lindroid.iosdialog.bean.TextParams
 import com.lindroid.iosdialog.constants.DIALOG_BOTTOM_LIST
 import com.lindroid.iosdialog.util.getPxSize
 import com.lindroid.iosdialog.util.getResColor
@@ -31,8 +31,8 @@ import kotlinx.android.synthetic.main.dialog_bottom_sheet_ios.*
 class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
 
     private val items: MutableList<DialogItemBean> = ArrayList()
-    private val bottomBtnConfigs: TextConfigs = IDialog.bottomBtnConfigs.copy()
-    private val bottomItemConfigs: TextConfigs = IDialog.bottomListItemConfigs.copy()
+    private val bottomBtnParams: TextParams = IDialog.bottomBtnConfigs.copy()
+    private val bottomItemParams: TextParams = IDialog.bottomListItemConfigs.copy()
     private var itemClickListener: ((Int, String, TextView, DialogInterface) -> Unit)? = null
     private var cancelClickListener: ((DialogInterface) -> Unit)? = null
     private var dismissible = true
@@ -52,11 +52,11 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
         llContent.background = initBackgroundDrawable()
 
         btnCancel.apply {
-            text = bottomBtnConfigs.text
-            textSize = bottomBtnConfigs.textSize
-            setTextColor(bottomBtnConfigs.textColor)
-            if (bottomBtnConfigs.height > 0) {
-                height = bottomBtnConfigs.height
+            text = bottomBtnParams.text
+            textSize = bottomBtnParams.textSize
+            setTextColor(bottomBtnParams.textColor)
+            if (bottomBtnParams.height > 0) {
+                height = bottomBtnParams.height
             }
             background = initBackgroundDrawable()
             setOnClickListener {
@@ -107,8 +107,8 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     @JvmOverloads
     fun addItem(
         text: String,
-        @ColorInt textColor: Int = bottomItemConfigs.textColor,
-        textSize: Float = bottomItemConfigs.textSize
+        @ColorInt textColor: Int = bottomItemParams.textColor,
+        textSize: Float = bottomItemParams.textSize
     ) =
         this.apply {
             items.add(DialogItemBean(text, textColor, textSize))
@@ -125,7 +125,7 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * 设置列表Item高度
      */
-    fun setItemHeight(height: Int) = this.apply { bottomBtnConfigs.height = height }
+    fun setItemHeight(height: Int) = this.apply { bottomBtnParams.height = height }
 
     /**
      * 设置列表Item高度
@@ -138,7 +138,7 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
      */
     fun setCancelText(
         text: String
-    ) = this.apply { bottomBtnConfigs.text = text }
+    ) = this.apply { bottomBtnParams.text = text }
 
     /**
      * 设置取消按钮文字Id
@@ -149,7 +149,7 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * 设置取消按钮文字颜色
      */
-    fun setCancelTextColor(@ColorInt color: Int) = this.apply { bottomBtnConfigs.textColor = color }
+    fun setCancelTextColor(@ColorInt color: Int) = this.apply { bottomBtnParams.textColor = color }
 
     /**
      * 设置取消按钮文字颜色Id
@@ -160,7 +160,7 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * 设置取消按钮文字大小，单位为sp
      */
-    fun setCancelTextSize(textSize: Float) = this.apply { bottomBtnConfigs.textSize = textSize }
+    fun setCancelTextSize(textSize: Float) = this.apply { bottomBtnParams.textSize = textSize }
 
     /**
      * 设置取消按钮文字大小
@@ -172,7 +172,7 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
     /**
      * 设置取消按钮高度
      */
-    fun setCancelButtonHeight(height: Int) = this.apply { bottomBtnConfigs.height = height }
+    fun setCancelButtonHeight(height: Int) = this.apply { bottomBtnParams.height = height }
 
     /**
      * 设置取消按钮高度
@@ -186,13 +186,13 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
      * 设置取消按钮的样式和点击事件
      */
     fun setCancelButton(
-        text: String = bottomBtnConfigs.text,
-        textColor: Int = bottomBtnConfigs.textColor,
-        textSize: Float = bottomBtnConfigs.textSize,
-        height: Int = bottomBtnConfigs.height,
+        text: String = bottomBtnParams.text,
+        textColor: Int = bottomBtnParams.textColor,
+        textSize: Float = bottomBtnParams.textSize,
+        height: Int = bottomBtnParams.height,
         listener: (dialog: DialogInterface) -> Unit
     ) = this.apply {
-        bottomBtnConfigs.let {
+        bottomBtnParams.let {
             it.text = text
             it.textColor = textColor
             it.textSize = textSize

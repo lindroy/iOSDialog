@@ -23,6 +23,10 @@ class ICustomDialog : BaseIOSDialog<ICustomDialog>() {
      */
     override fun onHandleView(dialogView: View): Boolean = false
 
+    init {
+        setAnimStyle(R.style.IOSAlertDialogStyle)
+    }
+
     companion object {
         @JvmStatic
         fun build(activity: FragmentActivity) =

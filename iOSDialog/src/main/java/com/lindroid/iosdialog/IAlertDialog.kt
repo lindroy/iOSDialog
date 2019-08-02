@@ -34,7 +34,6 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
     private var negBtnConfig = IDialog.alertNegBtnConfigs.copy()
     private var buttonHeight = IDialog.alertBtnHeight
 
-
     /**
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */

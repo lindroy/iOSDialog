@@ -12,7 +12,7 @@ import kotlinx.android.parcel.Parcelize
  * @Description
  */
 @Parcelize
-data class TextConfigs(
+data class TextParams(
         var textSize: Float,
         @ColorInt var textColor: Int,
         var gravity: Int = Gravity.CENTER,

@@ -11,7 +11,7 @@ import android.support.annotation.*
 import android.view.Gravity
 import android.view.View
 import com.lindroid.iosdialog.IDialog
-import com.lindroid.iosdialog.bean.TextConfigs
+import com.lindroid.iosdialog.bean.TextParams
 import com.lindroid.iosdialog.util.getResColor
 import com.lindroid.iosdialog.util.getResString
 import com.lindroid.iosdialog.util.getSpSize
@@ -36,9 +36,9 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
 
     protected var isShowNegButton = true
 
-    protected lateinit var titleConfig: TextConfigs
+    protected lateinit var titleConfig: TextParams
 
-    protected lateinit var msgConfig: TextConfigs
+    protected lateinit var msgConfig: TextParams
 
     protected var paddingTitleMsg = 0
 

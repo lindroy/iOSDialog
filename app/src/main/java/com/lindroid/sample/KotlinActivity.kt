@@ -154,7 +154,6 @@ class KotlinActivity : AppCompatActivity() {
                     View.OnClickListener {
                         Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show()
                     })
-                null
             }
             .show() //显示对话框
     }
@@ -175,7 +174,6 @@ class KotlinActivity : AppCompatActivity() {
                     View.OnClickListener {
                         Toast.makeText(mContext, "点击图标", Toast.LENGTH_LONG).show()
                     })
-                null
             }
             .show() //显示对话框
     }
