@@ -6,7 +6,7 @@ import android.support.annotation.FloatRange
 import android.support.annotation.LayoutRes
 import android.view.Gravity
 import android.view.View
-import com.lindroy.anddialog.base.ViewHolder
+import com.lindroid.iosdialog.viewholder.ViewHolder
 import kotlinx.android.parcel.Parcelize
 
 /**

@@ -50,11 +50,6 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
 
     private var contentView: View? = null
 
-   /* init {
-        setWidthScale(IDialog.alertWidthScale)
-        setAnimStyle(IDialog.alertAnimStyle)
-    }*/
-
     override fun onHandleView(dialogView: View): Boolean {
         tvTitle.apply {
             visibility = when (titleConfig.text.isNotEmpty()) {
@@ -243,5 +238,4 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
             contentView = null
         }
     }
-
 }

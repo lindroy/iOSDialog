@@ -2,6 +2,7 @@
 
 package com.lindroid.iosdialog.base
 
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,7 +14,6 @@ import android.support.annotation.StyleRes
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentManager
 import android.view.*
-import com.lindroid.iosdialog.IDialog
 import com.lindroid.iosdialog.util.dp2px
 import com.lindroid.iosdialog.util.screenWidth
 import com.lindroid.iosdialog.viewholder.ViewHolder
@@ -27,7 +27,7 @@ import com.lindroid.iosdialog.viewholder.ViewHolder
 abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
 
     private var dialogTag = "iOSDialog"
-    protected val mContext = IDialog.context
+    protected lateinit var mContext: Context
     /**
      * 自定义对话框布局Id
      */
@@ -52,6 +52,11 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
      * 返回true表示子类自己处理布局，setViewHandler方法无效
      */
     protected abstract fun onHandleView(dialogView: View): Boolean
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mContext = context!!
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -102,15 +107,11 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
 
     /**
      * 显示对话框
+     * @param tag:DialogFragment的Tag，默认为“iOSDialog”
      */
-    fun show() {
-        this.show(fm, dialogTag)
+    fun show(tag: String = dialogTag) {
+        this.show(fm, tag)
     }
-
-    /**
-     * 设置DialogFragment的Tag，默认为“iOSDialog”
-     */
-    fun setTag(tag: String) = this.apply { dialogTag = tag } as T
 
     /**
      * 设置动画
