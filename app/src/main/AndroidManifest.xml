@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.lindroid.iosdialoglib">
+    package="com.lindroy.iosdialoglib">
 
     <dist:module dist:instant="true" />
 
     <application
-        android:name="com.lindroid.sample.app.App"
+        android:name="com.lindroy.sample.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,14 +16,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.lindroid.sample.JavaActivity"
+            android:name="com.lindroy.sample.JavaActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/use_in_java"/>
         <activity
-            android:name="com.lindroid.sample.KotlinActivity"
+            android:name="com.lindroy.sample.KotlinActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/use_in_kotlin" />
-        <activity android:name="com.lindroid.sample.MainActivity">
+        <activity android:name="com.lindroy.sample.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

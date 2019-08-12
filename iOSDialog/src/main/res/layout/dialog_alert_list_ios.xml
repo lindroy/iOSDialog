@@ -9,7 +9,7 @@
 
     <include layout="@layout/layout_dialog_top_panel" />
 
-    <com.lindroid.iosdialog.widget.ElasticListView
+    <com.lindroy.iosdialog.widget.ElasticListView
         android:id="@+id/lvChoices"
         android:layout_width="match_parent"
         android:layout_height="0dp"
