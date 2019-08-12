@@ -209,7 +209,6 @@ class KotlinActivity : AppCompatActivity() {
                 holder.setOnClickListener(R.id.tvDismiss, View.OnClickListener { dialog.dismiss() })
             }
             .show()
-
     }
 
 

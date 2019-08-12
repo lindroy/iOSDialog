@@ -1,6 +1,5 @@
 package com.lindroy.iosdialog.base
 
-import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.ShapeDrawable
@@ -261,11 +260,11 @@ abstract class BaseIOSDialog<T : BaseIOSDialog<T>> : BaseDialog<T>() {
         contentView = View.inflate(IDialog.context, layoutId, null)
     } as T
 
-    override fun onDismiss(dialog: DialogInterface?) {
-        super.onDismiss(dialog)
+    override fun onDestroyView() {
         if (contentView != null) {
             flCustom.removeAllViews()
             contentView = null
         }
+        super.onDestroyView()
     }
 }
