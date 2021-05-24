@@ -4,7 +4,8 @@
     <dimen name="ios_dialog_corner_radius">14dp</dimen>
     <dimen name="ios_dialog_divider_size">0.5dp</dimen>
     <dimen name="ios_dialog_list_item_padding_sides">15dp</dimen>
-    <dimen name="ios_dialog_list_item_height">44dp</dimen>
+    <dimen name="ios_dialog_list_item_padding_top">8dp</dimen>
+    <dimen name="ios_dialog_list_item_height">48dp</dimen>
     <!--以上用于全部对话框-->
 
     <!--以下为提示对话框资源-->
