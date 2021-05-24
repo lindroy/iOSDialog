@@ -3,10 +3,10 @@ package com.lindroy.iosdialog.util
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import android.view.WindowManager
 import com.lindroy.iosdialog.IDialog
 import com.lindroy.iosdialog.IDialog.context

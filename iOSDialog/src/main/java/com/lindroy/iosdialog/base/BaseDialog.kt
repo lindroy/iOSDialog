@@ -7,12 +7,12 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.annotation.FloatRange
-import android.support.annotation.LayoutRes
-import android.support.annotation.Px
-import android.support.annotation.StyleRes
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
+import androidx.annotation.FloatRange
+import androidx.annotation.LayoutRes
+import androidx.annotation.Px
+import androidx.annotation.StyleRes
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import android.view.*
 import com.lindroy.iosdialog.util.dp2px
 import com.lindroy.iosdialog.util.screenWidth
@@ -24,7 +24,7 @@ import com.lindroy.iosdialog.viewholder.ViewHolder
  * @function 对话框基类
  * @Description
  */
-abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
+abstract class BaseDialog<T : BaseDialog<T>> : androidx.fragment.app.DialogFragment() {
 
     private var dialogTag = "iOSDialog"
     protected lateinit var mContext: Context
@@ -40,7 +40,7 @@ abstract class BaseDialog<T : BaseDialog<T>> : DialogFragment() {
     private var widthScale = 0F
     private var widthPx = 0
     private var gravity: Int = Gravity.CENTER
-    protected lateinit var fm: FragmentManager
+    protected lateinit var fm: androidx.fragment.app.FragmentManager
 
     /**
      * 子类继承需要创建的对话框布局Id

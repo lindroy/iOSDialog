@@ -6,7 +6,7 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
 import android.graphics.drawable.shapes.RoundRectShape
 import android.os.Bundle
-import android.support.annotation.*
+import androidx.annotation.*
 import android.view.Gravity
 import android.view.View
 import com.lindroy.iosdialog.IDialog

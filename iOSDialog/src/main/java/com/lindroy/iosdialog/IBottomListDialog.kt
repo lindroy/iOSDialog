@@ -1,13 +1,13 @@
 package com.lindroy.iosdialog
 
 import android.content.DialogInterface
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.annotation.DimenRes
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.core.content.ContextCompat
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
@@ -244,14 +244,14 @@ class IBottomListDialog : BaseIOSDialog<IBottomListDialog>() {
         }
 
         @JvmStatic
-        fun build(activity: FragmentActivity) =
+        fun build(activity: androidx.fragment.app.FragmentActivity) =
             IBottomListDialog().apply {
                 this.fm = activity.supportFragmentManager
                 initConfig()
             }
 
         @JvmStatic
-        fun build(fragment: Fragment) =
+        fun build(fragment: androidx.fragment.app.Fragment) =
             IBottomListDialog().apply {
                 this.fm = fragment.childFragmentManager
                 initConfig()

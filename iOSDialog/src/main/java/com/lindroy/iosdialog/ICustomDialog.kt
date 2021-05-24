@@ -1,8 +1,8 @@
 package com.lindroy.iosdialog
 
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import android.view.View
 import com.lindroy.iosdialog.base.BaseIOSDialog
 
@@ -29,13 +29,13 @@ class ICustomDialog : BaseIOSDialog<ICustomDialog>() {
 
     companion object {
         @JvmStatic
-        fun build(activity: FragmentActivity) =
+        fun build(activity: androidx.fragment.app.FragmentActivity) =
                 ICustomDialog().apply {
                     this.fm = activity.supportFragmentManager
                 }
 
         @JvmStatic
-        fun build(fragment: Fragment) =
+        fun build(fragment: androidx.fragment.app.Fragment) =
                 ICustomDialog().apply {
                     this.fm = fragment.childFragmentManager
                 }

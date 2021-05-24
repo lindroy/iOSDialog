@@ -1,8 +1,8 @@
 package com.lindroy.iosdialog.viewholder
 
 import android.content.Context
-import android.support.annotation.*
-import android.support.v4.content.ContextCompat
+import androidx.annotation.*
+import androidx.core.content.ContextCompat
 import android.util.SparseArray
 import android.view.View
 import android.widget.Checkable

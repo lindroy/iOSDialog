@@ -3,9 +3,9 @@ package com.lindroy.iosdialog
 import android.app.Application
 import android.content.Context
 import android.graphics.Color
-import android.support.annotation.ColorInt
-import android.support.annotation.FloatRange
-import android.support.annotation.StyleRes
+import androidx.annotation.ColorInt
+import androidx.annotation.FloatRange
+import androidx.annotation.StyleRes
 import com.lindroy.iosdialog.bean.TextParams
 import com.lindroy.iosdialog.util.getPxSize
 import com.lindroy.iosdialog.util.getResColor

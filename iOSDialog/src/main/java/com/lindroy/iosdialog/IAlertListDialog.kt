@@ -1,13 +1,13 @@
 package com.lindroy.iosdialog
 
 import android.content.DialogInterface
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.annotation.DimenRes
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.widget.TextView
 import com.lindroy.iosdialog.adapter.IDialogListAdapter
@@ -226,12 +226,12 @@ class IAlertListDialog : BaseIAlertDialog<IAlertListDialog>() {
 
     companion object {
         @JvmStatic
-        fun build(activity: FragmentActivity) = IAlertListDialog().apply {
+        fun build(activity: androidx.fragment.app.FragmentActivity) = IAlertListDialog().apply {
             this.fm = activity.supportFragmentManager
         }
 
         @JvmStatic
-        fun build(fragment: Fragment) = IAlertListDialog().apply {
+        fun build(fragment: androidx.fragment.app.Fragment) = IAlertListDialog().apply {
             this.fm = fragment.childFragmentManager
         }
     }

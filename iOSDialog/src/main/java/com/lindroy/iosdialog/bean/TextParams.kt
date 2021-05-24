@@ -1,7 +1,7 @@
 package com.lindroy.iosdialog.bean
 
 import android.os.Parcelable
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.view.Gravity
 import kotlinx.android.parcel.Parcelize
 

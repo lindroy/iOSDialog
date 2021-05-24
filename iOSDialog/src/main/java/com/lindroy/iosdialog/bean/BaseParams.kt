@@ -2,8 +2,8 @@ package com.lindroy.iosdialog.bean
 
 import android.content.DialogInterface
 import android.os.Parcelable
-import android.support.annotation.FloatRange
-import android.support.annotation.LayoutRes
+import androidx.annotation.FloatRange
+import androidx.annotation.LayoutRes
 import android.view.Gravity
 import android.view.View
 import com.lindroy.iosdialog.viewholder.ViewHolder

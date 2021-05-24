@@ -1,6 +1,6 @@
 package com.lindroy.iosdialog.constants
 
-import android.support.annotation.IntDef
+import androidx.annotation.IntDef
 
 /**
  * @author Lin

@@ -3,15 +3,16 @@ package com.lindroy.sample;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lindroy.iosdialog.ICustomDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lindroy.iosdialog.IAlertDialog;
 import com.lindroy.iosdialog.IAlertListDialog;
 import com.lindroy.iosdialog.IBottomListDialog;
+import com.lindroy.iosdialog.ICustomDialog;
 import com.lindroy.iosdialog.viewholder.ViewHolder;
 import com.lindroy.iosdialoglib.R;
 

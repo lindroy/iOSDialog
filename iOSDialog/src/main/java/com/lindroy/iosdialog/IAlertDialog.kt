@@ -1,12 +1,12 @@
 package com.lindroy.iosdialog
 
 import android.content.DialogInterface
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.annotation.DimenRes
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import android.view.View
 import com.lindroy.iosdialog.base.BaseIAlertDialog
 import com.lindroy.iosdialog.util.getPxSize
@@ -224,12 +224,12 @@ class IAlertDialog : BaseIAlertDialog<IAlertDialog>() {
 
     companion object {
         @JvmStatic
-        fun build(activity: FragmentActivity) = IAlertDialog().apply {
+        fun build(activity: androidx.fragment.app.FragmentActivity) = IAlertDialog().apply {
             this.fm = activity.supportFragmentManager
         }
 
         @JvmStatic
-        fun build(fragment: Fragment) = IAlertDialog().apply {
+        fun build(fragment: androidx.fragment.app.Fragment) = IAlertDialog().apply {
             this.fm = fragment.childFragmentManager
         }
     }
